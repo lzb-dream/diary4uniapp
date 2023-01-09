@@ -1,0 +1,1 @@
+<view class="noticeBox"><uni-notice-bar wx:if="{{a}}" u-i="5cfe0d17-0" bind:__l="__l" u-p="{{a}}"/></view>

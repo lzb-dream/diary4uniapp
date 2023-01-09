@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "love日记本",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "notice": "../../components/notice",
+    "weather-mood": "../../components/weatherAndMood",
+    "image-and-video": "../../components/imageAndVideo",
+    "diary": "../../components/Diary"
+  }
+}

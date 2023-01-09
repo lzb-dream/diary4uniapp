@@ -1,0 +1,1 @@
+<view class="text data-v-f7dd7eb9"><block wx:if="{{r0}}"><textarea class="data-v-f7dd7eb9" auto-height="true" maxlength="-1" placeholder="这里写下你的日记" value="{{a}}" bindinput="{{b}}"></textarea></block></view>

@@ -1,0 +1,18 @@
+.box.data-v-ef6850c5 {
+  margin-top: var(--ef6850c5-statusBarHeight);
+}
+.box .save.data-v-ef6850c5 {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  height: 90rpx;
+  background-color: paleturquoise;
+}
+
+
+page {
+		background-size: cover;
+		background-attachment: fixed;
+}

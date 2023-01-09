@@ -1,0 +1,104 @@
+
+.data-v-9dfebe0d checkbox.round .wx-checkbox-input,
+checkbox.round .uni-checkbox-input.data-v-9dfebe0d {
+  width: 70rpx;
+  border: 0;
+  background-image: url(http://127.0.0.1:8000/static/set/hollow.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.data-v-9dfebe0d checkbox.red[checked] .wx-checkbox-input,
+checkbox.red.checked .uni-checkbox-input.data-v-9dfebe0d {
+  color: transparent !important;
+  background-image: url(http://127.0.0.1:8000/static/set/solid.png);
+}
+.active.data-v-9dfebe0d {
+  background-color: aqua;
+}
+.downloadActive.data-v-9dfebe0d {
+  width: 70rpx;
+  height: 70rpx;
+}
+.downloadStatic.data-v-9dfebe0d {
+  width: 50rpx;
+  height: 50rpx;
+}
+.top.data-v-9dfebe0d {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #4F4F4F;
+  padding-top: var(--9dfebe0d-statusBarHeight);
+  box-sizing: border-box;
+}
+.top .title.data-v-9dfebe0d {
+  text-align: center;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: medium;
+  font-weight: 700;
+}
+.top .scrollX.data-v-9dfebe0d {
+  white-space: nowrap;
+  width: 100%;
+  margin-top: 10rpx;
+  background-color: #4F4F4F;
+}
+.top .scrollX .scroll-view-item_X.data-v-9dfebe0d {
+  display: inline-block;
+  width: 25%;
+  height: 50rpx;
+  text-align: center;
+}
+.top .scrollX .scroll-view-item_X.data-v-9dfebe0d:active {
+  background-color: aqua;
+}
+.scrollY.data-v-9dfebe0d {
+  height: var(--9dfebe0d-scrollYHeight);
+  width: 100%;
+}
+.scrollY .imageFather.data-v-9dfebe0d {
+  width: 98%;
+  margin: 0 auto;
+}
+.scrollY .imageFather image.data-v-9dfebe0d {
+  font-size: 0;
+  border-radius: 5rpx;
+  width: 100%;
+}
+.scrollY .imageFather .message.data-v-9dfebe0d {
+  width: 100%%;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 0px 36rpx 0px rgba(96, 96, 96, 0.3);
+}
+.scrollY .imageFather .message checkbox-group.data-v-9dfebe0d {
+  margin-right: 10rpx;
+}
+.scrollY .imageFather .message image.data-v-9dfebe0d {
+  margin-left: 10rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+.backTop.data-v-9dfebe0d {
+  position: fixed;
+  right: 10%;
+  bottom: 2%;
+  z-index: 2;
+}
+.refresh.data-v-9dfebe0d {
+  position: fixed;
+  left: 10%;
+  bottom: 2%;
+  z-index: 2;
+}
+.backTop.data-v-9dfebe0d,
+.refresh.data-v-9dfebe0d {
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

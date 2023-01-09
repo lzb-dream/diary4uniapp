@@ -1,0 +1,74 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/wallpaper/wallpaper",
+			"style": {
+				"navigationBarTitleText": "壁纸",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/record/record",
+			"style": {
+				"navigationBarTitleText": "love日记本",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationStyle": "custom"
+			}
+		}
+		
+	],
+	"subPackages": [
+		{
+			"root": "myPage",
+			"pages": [
+				{
+					// "needLogin": true
+					"path": "previewWallpaper/previewWallpaper",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		}
+	],
+	"tabBar": { // 设置底部 tab 的表现
+			"color": "#333333",
+			"selectedColor": "#1296db",
+			"borderStyle": "black",
+			"backgroundColor": "#fff",
+			"list": [{
+					"pagePath": "pages/record/record",
+					"text": "记录生活",
+					"iconPath": "static/record_0.png",
+					"selectedIconPath": "static/record_1.png"
+				}, 
+				{
+					"pagePath": "pages/wallpaper/wallpaper",
+					"text": "壁纸",
+					"iconPath": "static/love_0.png",
+					"selectedIconPath": "static/love_1.png"
+				},
+				{
+					"pagePath": "pages/my/my",
+					"text": "我的",
+					"iconPath": "static/my_0.png",
+					"selectedIconPath": "static/my_1.png"
+				}
+			]
+		},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+
+	}
+	// "uniIdRouter": {}
+
+}

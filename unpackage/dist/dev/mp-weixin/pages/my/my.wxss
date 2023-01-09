@@ -1,0 +1,58 @@
+.persona .Homepage.data-v-2f1ef635 {
+  width: 100%;
+  height: 500rpx;
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.persona .Homepage .info.data-v-2f1ef635 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.persona .Homepage .info .nickname.data-v-2f1ef635 {
+  margin-bottom: 10rpx;
+  text-align: center;
+  color: grey;
+}
+.persona .userImage.data-v-2f1ef635::after {
+  border: none;
+}
+.persona .userImage.data-v-2f1ef635 {
+  width: 200rpx;
+  height: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.persona .userImage text.data-v-2f1ef635 {
+  position: absolute;
+  bottom: 0;
+  font-size: xx-small;
+  height: 54rpx;
+  color: gray;
+}
+.persona image.data-v-2f1ef635 {
+  width: 150rpx;
+  height: 150rpx;
+}
+.loginImage.data-v-2f1ef635 {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.loginImage image.data-v-2f1ef635 {
+  width: 100%;
+  height: var(--2f1ef635-loginImageHeight);
+}
+.loginImage button.data-v-2f1ef635 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5%;
+  background-image: linear-gradient(to bottom right, rgba(247, 240, 172, 0.62), rgba(172, 247, 240, 0.77), rgba(240, 172, 247, 0.75));
+  color: gray;
+}

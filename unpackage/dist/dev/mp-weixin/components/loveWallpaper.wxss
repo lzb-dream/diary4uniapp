@@ -1,0 +1,14 @@
+.Box.data-v-67f3871b {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Box .item.data-v-67f3871b {
+  width: 50%;
+  padding: 2rpx 2rpx;
+  box-sizing: border-box;
+  font-size: 0;
+}
+.Box .item image.data-v-67f3871b {
+  width: 100%;
+}

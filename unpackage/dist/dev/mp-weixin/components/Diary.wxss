@@ -1,0 +1,9 @@
+textarea.data-v-f7dd7eb9 {
+  width: 92%;
+  line-height: 60rpx;
+  color: black;
+  font-size: large;
+  padding: 2rpx;
+  margin: 0 auto;
+  margin-bottom: 180rpx;
+}

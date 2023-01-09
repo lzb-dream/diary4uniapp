@@ -1,0 +1,54 @@
+
+.data-v-d80c39b6 .uni-collapse {
+  background-color: transparent;
+}
+.data-v-d80c39b6 .uni-collapse-item__title-box {
+  background-color: transparent;
+}
+.Media.data-v-d80c39b6 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+.Media .itemMedia.data-v-d80c39b6 {
+  position: relative;
+  width: 150rpx;
+  height: 150rpx;
+  margin: 10rpx;
+  box-shadow: 0px 0px 36rpx 0px rgba(5, 5, 5, 0.15);
+}
+.Media .itemMedia image.data-v-d80c39b6,
+.Media .itemMedia video.data-v-d80c39b6 {
+  width: 100%;
+  height: 100%;
+  border-radius: 15rpx;
+}
+.Media .itemMedia .incorrect.data-v-d80c39b6 {
+  width: 35rpx;
+  height: 35rpx;
+  display: inline-block;
+  background-image: url('https://love-life-lzb.fun/static/inco/incorrect .png');
+  background-size: 100% 100%;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+}
+.Media .itemMedia .play.data-v-d80c39b6 {
+  z-index: 99;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.Media .addMedia.data-v-d80c39b6 {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 10rpx;
+  border: 5px solid darkgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  z-index: 99;
+}
