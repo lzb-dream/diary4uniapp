@@ -39,25 +39,13 @@ import Notice from '@/components/notice.vue'
 import Loading from '@/components/loading.vue'
 import {useStore} from 'vuex'
 import {requests} from '@/js/request.js'
-import { nextTick, onBeforeUnmount, reactive, ref } from "vue"
-import { showToast,rpxTopx} from '../../js/way'
+import { ref } from "vue"
+import { showToast,rpxTopx,judgeLogin} from '../../js/way'
 
 const myStore = useStore()
 myStore.dispatch('wallpaper/getData','GourmetFood')
 const wallpaper = myStore.state.wallpaper
 const imageData = wallpaper.imageData
-// 验证登录函数
-function judgeLogin(){
-	uni.showModal({
-		title:'请登录后操作',
-		success: (res) => {
-			if(res.confirm){uni.switchTab({
-				url:"/pages/my/my"
-			})}
-		}
-	})
-}
-
 // 控制返回顶部状态
 const topShow = ref(false)
 
@@ -92,21 +80,20 @@ function clickToptabbar(index){
 	topNumber.value = index 
 }
 // 喜欢按钮的点击
-let heartSwitch = ref(false)
+let heartSwitch = ref(false) 
 async function changeCheckbox(e,imageId,tableS,maxImage){
-	if(heartSwitch.value){
-		return
-	}
-	heartSwitch.value = true
-	setTimeout(()=>{
-		heartSwitch.value = false
-	},1000)
 	// 验证登录
-	
 	if(!myStore.state.haslogin){
 		judgeLogin()
 		return
 	}else{
+		if(heartSwitch.value){
+			return
+		}
+		heartSwitch.value = true
+		setTimeout(()=>{
+			heartSwitch.value = false
+		},1000)
 		if(e.detail.value.length>0){
 			requests({url:'loveimage',method:'POST',data:{'image':{[tableS]:imageId}}})
 			myStore.commit('wallpaper/push',{name:'loveImage',value:{loveImage:maxImage,id:{[tableS]:imageId}}})
@@ -211,7 +198,8 @@ statusBarHeight = statusBarHeight+'px'
 	// </checkbox-group>
 	
 	.active {
-		background-color: aqua;
+		background-color: #98F5FF;
+		border-radius: 10rpx;
 	}
 	.downloadActive {
 		width: 70rpx;
@@ -226,7 +214,7 @@ statusBarHeight = statusBarHeight+'px'
 		position: sticky;
 		top: 0;
 		z-index: 2;
-		background-color: #4F4F4F;
+		background-color: #fff;
 		padding-top: v-bind(statusBarHeight);
 		box-sizing: border-box;
 		.title {
@@ -240,15 +228,12 @@ statusBarHeight = statusBarHeight+'px'
 			white-space: nowrap;
 			width: 100%;
 			margin-top: 10rpx;
-			background-color: #4F4F4F;
+			background-color: #fff;
 			.scroll-view-item_X {
 				display: inline-block;
 				width: 25%;
 				height: 50rpx;
 				text-align: center;
-			}
-			.scroll-view-item_X:active{
-				background-color: aqua;
 			}
 		}
 	}

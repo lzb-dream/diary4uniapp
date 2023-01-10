@@ -1,1 +1,1 @@
-<view class="Box data-v-67f3871b"><view wx:for="{{a}}" wx:for-item="item" wx:key="b" class="item data-v-67f3871b"><image class="data-v-67f3871b" src="{{item.a}}" mode="aspectFill"></image></view></view>
+<view class="Box data-v-67f3871b"><view wx:for="{{a}}" wx:for-item="item" wx:key="d" class="item data-v-67f3871b"><image class="data-v-67f3871b" src="{{item.a}}" mode="aspectFill" bindlongpress="{{item.b}}" bindtap="{{item.c}}"></image></view></view>

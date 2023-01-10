@@ -21,7 +21,9 @@ export function request(URL){
 	
 	uni.addInterceptor('uploadFile',{
 		invoke(args) {
+			let userJwt = uni.getStorageSync('userInfo').userJwt
 			args.url = URL+args.url
+			args.header = {Authorization:userJwt}
 		}
 	})
 }

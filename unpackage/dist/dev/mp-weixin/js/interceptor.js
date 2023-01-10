@@ -21,7 +21,9 @@ function request(URL) {
   });
   common_vendor.index.addInterceptor("uploadFile", {
     invoke(args) {
+      let userJwt = common_vendor.index.getStorageSync("userInfo").userJwt;
       args.url = URL + args.url;
+      args.header = { Authorization: userJwt };
     }
   });
 }

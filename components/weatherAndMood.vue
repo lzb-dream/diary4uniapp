@@ -1,21 +1,21 @@
 <template>
 	<view class="weathermoodBox">
 		<view class="time">
-			<text>{{$store.state.writeDiary.writeTime}}</text>
+			<text>{{writeDiary.writeTime}}</text>
 		</view>
 		<view class="address">
 			<label for="address">地址:</label>
-			<input id="address" type="text" v-model="$store.state.writeDiary.address"/>
+			<input id="address" type="text" v-model="writeDiary.address"/>
 			<uni-icons type="location-filled" size="30" color="red" @click="getAddress()"></uni-icons>
 		</view>
 		<view class="weathermood">
 			<view class="item">
 				<label for="weather">天气：</label>
-				<input type="text" id="weather">
+				<input type="text" id="weather" v-model="writeDiary.weather">
 			</view>
 			<view class="item">
 				<label for="mood">心情：</label>
-				<input type="text" id="mood">
+				<input type="text" id="mood" v-model="writeDiary.mood">
 			</view>
 		</view>
 	</view>
@@ -24,10 +24,11 @@
 <script setup>
 import { useStore } from 'vuex'
 import {time} from '@/js/way.js'
+const myStore = useStore()
+const writeDiary = myStore.state.writeDiary
 setInterval(()=>{
 	myStore.commit('writeDiary/changeTime',time())
 },1000)
-const myStore = useStore()
 async function getAddress(){
 	const res = await uni.chooseLocation()
 	let address =  res.name

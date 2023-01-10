@@ -33,7 +33,6 @@ const wallpaper$1 = {
         const userInfo = common_vendor.index.getStorageSync("userInfo");
         userInfo.heartWallpapwer.unshift(obj.value);
         common_vendor.index.setStorageSync("userInfo", userInfo);
-        console.log(state[obj.name]);
       } else {
         state[obj.name].push(obj.value);
       }

@@ -11,4 +11,14 @@ async function requests(obj) {
   });
   return res;
 }
+async function uploadfile(obj) {
+  const res = await common_vendor.index.uploadFile({
+    url: obj.url,
+    filePath: obj.filePath,
+    formData: obj.formData,
+    name: obj.name
+  });
+  return res;
+}
 exports.requests = requests;
+exports.uploadfile = uploadfile;

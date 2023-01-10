@@ -36,6 +36,16 @@ export function pxToRpx(px) {
    return Math.floor(rpx);
  }
 
+export function judgeLogin(){
+	uni.showModal({
+		title:'请登录后操作',
+		success: (res) => {
+			if(res.confirm){uni.switchTab({
+				url:"/pages/my/my"
+			})}
+		}
+	})
+}
 
 // export function s(message,scallBack,fcallBack){
 // 	uni.showModal({

@@ -4,11 +4,13 @@ const writeDiary = {
   namespaced: true,
   state: {
     address: "",
+    weather: "",
+    mood: "",
+    writeTime: js_way.time(),
+    diary: "",
     videoList: [],
     imageList: [],
-    videoPhotoList: [],
-    writeTime: js_way.time(),
-    diary: ""
+    videoPhotoList: []
   },
   getters: {},
   mutations: {
@@ -22,7 +24,10 @@ const writeDiary = {
       state[obj.name].push(obj.value);
     },
     pop(state, obj) {
-      state[obj.name].splice(obj.index, 1);
+      let a = state[obj.name].indexOf(obj.value);
+      if (a > -1) {
+        state[obj.name].splice(a, 1);
+      }
     }
   },
   actions: {}

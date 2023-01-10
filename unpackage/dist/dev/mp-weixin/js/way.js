@@ -22,6 +22,19 @@ function rpxTopx(rpx) {
   let px = deviceWidth / 750 * Number(rpx);
   return Math.floor(px);
 }
+function judgeLogin() {
+  common_vendor.index.showModal({
+    title: "\u8BF7\u767B\u5F55\u540E\u64CD\u4F5C",
+    success: (res) => {
+      if (res.confirm) {
+        common_vendor.index.switchTab({
+          url: "/pages/my/my"
+        });
+      }
+    }
+  });
+}
+exports.judgeLogin = judgeLogin;
 exports.rpxTopx = rpxTopx;
 exports.showToast = showToast;
 exports.time = time;

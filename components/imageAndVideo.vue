@@ -2,14 +2,18 @@
 <uni-collapse>
 	<uni-collapse-item title="保存图片或视频请点击这里" :open="false">
 		<view class="Media">
-			<view class="itemMedia" v-if="$store.state.writeDiary.imageList.length>0" v-for="(i,index) in $store.state.writeDiary.imageList" :key="i">
+			<view class="itemMedia" 
+			v-if="writeDiary.imageList.length>0" 
+			v-for="(i,index) in writeDiary.imageList" :key="i">
 				<image :src="i" alt="" @click="previewImage(i)" mode="aspectFill"></image>
-				<text class="incorrect" @click.stop="deleteMedia(index,'imageList')" ></text>
+				<text class="incorrect" @click.stop="deleteMedia(i,'imageList')" ></text>
 			</view>
 				
-			<view class="itemMedia" @click.stop="previewVideo(i)" v-if="$store.state.writeDiary.videoList.length>0" v-for="(i,index) in $store.state.writeDiary.videoList" :key="i">
+			<view class="itemMedia" @click.stop="previewVideo(i)" 
+			v-if="writeDiary.videoList.length>0" 
+			v-for="(i,index) in writeDiary.videoList" :key="i">
 				<video :src="i" :show-fullscreen-btn="false" :show-center-play-btn="false" :controls="false"></video>
-				<text class="incorrect" @click.stop="deleteMedia(index,'videoList')" ></text>
+				<text class="incorrect" @click.stop="deleteMedia(i,'videoList')" ></text>
 				<view class="play">
 					<uni-icons type="videocam" size="35" color="#00F5FF"></uni-icons>
 				</view>
@@ -25,11 +29,17 @@
 
 <script setup>
 import {useStore} from 'vuex'
+import {judgeLogin} from '@/js/way.js'
 const myStore = useStore()
-const State = myStore.state.writeDiary
+const writeDiary = myStore.state.writeDiary
+
 async function choose(){
+	if(!myStore.state.haslogin){
+		judgeLogin()
+		return
+	}
 	//判断图片与视频数量
-	let mediaNumber = State.imageList.length+State.videoList.length
+	let mediaNumber = writeDiary.imageList.length+writeDiary.videoList.length
 	if (mediaNumber>=6){
 		uni.showModal({
 			title:'视频图片数量不能大于6个'
@@ -53,7 +63,7 @@ async function choose(){
 			myStore.commit('writeDiary/push',{name:'imageList',value:tempFilePath})
 		}else if(Type==="video"){
 			myStore.commit('writeDiary/push',{name:'videoList',value:tempFilePath})
-			myStore.commit('writeDiary/push',{name:'videoPhotoList',value:tempFilePath})
+			myStore.commit('writeDiary/push',{name:'videoPhotoList',value:videoPhoto})
 		}
 	}
 }
@@ -63,10 +73,10 @@ function previewImage(imageUrl){
 	})
 }
 
-function deleteMedia(index,Type){
-	myStore.commit('writeDiary/pop',{name:Type,value:index})
+function deleteMedia(media,Type){
+	myStore.commit('writeDiary/pop',{name:Type,value:media})
 	if(Type==="video"){
-		myStore.commit('writeDiary/pop',{name:'videoPhotoList',value:index})
+		myStore.commit('writeDiary/pop',{name:'videoPhotoList',value:media})
 	}
 }
 

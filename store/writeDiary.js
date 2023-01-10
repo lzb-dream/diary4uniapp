@@ -3,11 +3,13 @@ export default {
 	namespaced:true,
 	state:{
 		address:"",
+		weather:'',
+		mood:'',
+		writeTime:time(),
+		diary:'',
 		videoList:[],
 		imageList:[],
-		videoPhotoList:[],
-		writeTime:time(),
-		diary:''
+		videoPhotoList:[]
 	},
 	getters:{},
 	mutations:{
@@ -21,7 +23,10 @@ export default {
 			state[obj.name].push(obj.value)
 		},
 		pop(state,obj){
-			state[obj.name].splice(obj.index,1)
+			let a = state[obj.name].indexOf(obj.value)
+			if(a>-1){
+				state[obj.name].splice(a,1)
+			}
 		}
 		
 	},

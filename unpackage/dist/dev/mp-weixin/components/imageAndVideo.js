@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
+const js_way = require("../js/way.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_collapse_item2 = common_vendor.resolveComponent("uni-collapse-item");
@@ -21,9 +22,13 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
   __name: "imageAndVideo",
   setup(__props) {
     const myStore = common_vendor.useStore();
-    const State = myStore.state.writeDiary;
+    const writeDiary = myStore.state.writeDiary;
     async function choose() {
-      let mediaNumber = State.imageList.length + State.videoList.length;
+      if (!myStore.state.haslogin) {
+        js_way.judgeLogin();
+        return;
+      }
+      let mediaNumber = writeDiary.imageList.length + writeDiary.videoList.length;
       if (mediaNumber >= 6) {
         common_vendor.index.showModal({
           title: "\u89C6\u9891\u56FE\u7247\u6570\u91CF\u4E0D\u80FD\u5927\u4E8E6\u4E2A"
@@ -36,7 +41,7 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
         let tempFilePath = res.tempFiles[i].tempFilePath;
         let size = res.tempFiles[i].size;
         let Type = res.type;
-        Type === "video" ? res.tempFiles[i].thumbTempFilePath : null;
+        let videoPhoto = Type === "video" ? res.tempFiles[i].thumbTempFilePath : null;
         if (size / 1048576 >= 10) {
           common_vendor.index.showModal({
             title: "\u5355\u4E2A\u89C6\u9891\u4E0D\u80FD\u5927\u4E8E10mb"
@@ -47,7 +52,7 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
           myStore.commit("writeDiary/push", { name: "imageList", value: tempFilePath });
         } else if (Type === "video") {
           myStore.commit("writeDiary/push", { name: "videoList", value: tempFilePath });
-          myStore.commit("writeDiary/push", { name: "videoPhotoList", value: tempFilePath });
+          myStore.commit("writeDiary/push", { name: "videoPhotoList", value: videoPhoto });
         }
       }
     }
@@ -56,33 +61,33 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
         urls: [imageUrl]
       });
     }
-    function deleteMedia(index, Type) {
-      myStore.commit("writeDiary/pop", { name: Type, value: index });
+    function deleteMedia(media, Type) {
+      myStore.commit("writeDiary/pop", { name: Type, value: media });
       if (Type === "video") {
-        myStore.commit("writeDiary/pop", { name: "videoPhotoList", value: index });
+        myStore.commit("writeDiary/pop", { name: "videoPhotoList", value: media });
       }
     }
     function previewVideo() {
     }
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: _ctx.$store.state.writeDiary.imageList.length > 0
-      }, _ctx.$store.state.writeDiary.imageList.length > 0 ? {
-        b: common_vendor.f(_ctx.$store.state.writeDiary.imageList, (i, index, i0) => {
+        a: common_vendor.unref(writeDiary).imageList.length > 0
+      }, common_vendor.unref(writeDiary).imageList.length > 0 ? {
+        b: common_vendor.f(common_vendor.unref(writeDiary).imageList, (i, index, i0) => {
           return {
             a: i,
             b: common_vendor.o(($event) => previewImage(i), i),
-            c: common_vendor.o(($event) => deleteMedia(index, "imageList"), i),
+            c: common_vendor.o(($event) => deleteMedia(i, "imageList"), i),
             d: i
           };
         })
       } : {}, {
-        c: _ctx.$store.state.writeDiary.videoList.length > 0
-      }, _ctx.$store.state.writeDiary.videoList.length > 0 ? {
-        d: common_vendor.f(_ctx.$store.state.writeDiary.videoList, (i, index, i0) => {
+        c: common_vendor.unref(writeDiary).videoList.length > 0
+      }, common_vendor.unref(writeDiary).videoList.length > 0 ? {
+        d: common_vendor.f(common_vendor.unref(writeDiary).videoList, (i, index, i0) => {
           return {
             a: i,
-            b: common_vendor.o(($event) => deleteMedia(index, "videoList"), i),
+            b: common_vendor.o(($event) => deleteMedia(i, "videoList"), i),
             c: "d80c39b6-2-" + i0 + ",d80c39b6-1",
             d: common_vendor.o(($event) => previewVideo(), i),
             e: i

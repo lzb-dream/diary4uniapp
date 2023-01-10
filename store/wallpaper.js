@@ -31,7 +31,6 @@ export default {
 				const userInfo = uni.getStorageSync('userInfo')
 				userInfo.heartWallpapwer.unshift(obj.value)
 				uni.setStorageSync('userInfo',userInfo)
-				console.log(state[obj.name]);
 			}else{
 				state[obj.name].push(obj.value)
 			}	

@@ -14,7 +14,8 @@ checkbox.red.checked .uni-checkbox-input.data-v-9dfebe0d {
   background-image: url(http://127.0.0.1:8000/static/set/solid.png);
 }
 .active.data-v-9dfebe0d {
-  background-color: aqua;
+  background-color: #98F5FF;
+  border-radius: 10rpx;
 }
 .downloadActive.data-v-9dfebe0d {
   width: 70rpx;
@@ -29,7 +30,7 @@ checkbox.red.checked .uni-checkbox-input.data-v-9dfebe0d {
   position: sticky;
   top: 0;
   z-index: 2;
-  background-color: #4F4F4F;
+  background-color: #fff;
   padding-top: var(--9dfebe0d-statusBarHeight);
   box-sizing: border-box;
 }
@@ -44,16 +45,13 @@ checkbox.red.checked .uni-checkbox-input.data-v-9dfebe0d {
   white-space: nowrap;
   width: 100%;
   margin-top: 10rpx;
-  background-color: #4F4F4F;
+  background-color: #fff;
 }
 .top .scrollX .scroll-view-item_X.data-v-9dfebe0d {
   display: inline-block;
   width: 25%;
   height: 50rpx;
   text-align: center;
-}
-.top .scrollX .scroll-view-item_X.data-v-9dfebe0d:active {
-  background-color: aqua;
 }
 .scrollY.data-v-9dfebe0d {
   height: var(--9dfebe0d-scrollYHeight);

@@ -22,18 +22,6 @@ const _sfc_main = {
     myStore.dispatch("wallpaper/getData", "GourmetFood");
     const wallpaper = myStore.state.wallpaper;
     const imageData = wallpaper.imageData;
-    function judgeLogin() {
-      common_vendor.index.showModal({
-        title: "\u8BF7\u767B\u5F55\u540E\u64CD\u4F5C",
-        success: (res) => {
-          if (res.confirm) {
-            common_vendor.index.switchTab({
-              url: "/pages/my/my"
-            });
-          }
-        }
-      });
-    }
     const topShow = common_vendor.ref(false);
     let loadingStatus = common_vendor.ref(false);
     const topTabbarList = ["\u7F8E\u98DF", "\u76F8\u7EA6", "\u5BB6\u5EAD", "\u5B69\u7AE5"];
@@ -52,17 +40,17 @@ const _sfc_main = {
     }
     let heartSwitch = common_vendor.ref(false);
     async function changeCheckbox(e, imageId, tableS, maxImage) {
-      if (heartSwitch.value) {
-        return;
-      }
-      heartSwitch.value = true;
-      setTimeout(() => {
-        heartSwitch.value = false;
-      }, 1e3);
       if (!myStore.state.haslogin) {
-        judgeLogin();
+        js_way.judgeLogin();
         return;
       } else {
+        if (heartSwitch.value) {
+          return;
+        }
+        heartSwitch.value = true;
+        setTimeout(() => {
+          heartSwitch.value = false;
+        }, 1e3);
         if (e.detail.value.length > 0) {
           js_request.requests({ url: "loveimage", method: "POST", data: { "image": { [tableS]: imageId } } });
           myStore.commit("wallpaper/push", { name: "loveImage", value: { loveImage: maxImage, id: { [tableS]: imageId } } });

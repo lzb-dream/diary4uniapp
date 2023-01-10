@@ -17,10 +17,11 @@ const __default__ = {
 const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
   __name: "weatherAndMood",
   setup(__props) {
+    const myStore = common_vendor.useStore();
+    const writeDiary = myStore.state.writeDiary;
     setInterval(() => {
       myStore.commit("writeDiary/changeTime", js_way.time());
     }, 1e3);
-    const myStore = common_vendor.useStore();
     async function getAddress() {
       const res = await common_vendor.index.chooseLocation();
       let address = res.name;
@@ -28,15 +29,19 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
     }
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.t(_ctx.$store.state.writeDiary.writeTime),
-        b: _ctx.$store.state.writeDiary.address,
-        c: common_vendor.o(($event) => _ctx.$store.state.writeDiary.address = $event.detail.value),
+        a: common_vendor.t(common_vendor.unref(writeDiary).writeTime),
+        b: common_vendor.unref(writeDiary).address,
+        c: common_vendor.o(($event) => common_vendor.unref(writeDiary).address = $event.detail.value),
         d: common_vendor.o(($event) => getAddress()),
         e: common_vendor.p({
           type: "location-filled",
           size: "30",
           color: "red"
-        })
+        }),
+        f: common_vendor.unref(writeDiary).weather,
+        g: common_vendor.o(($event) => common_vendor.unref(writeDiary).weather = $event.detail.value),
+        h: common_vendor.unref(writeDiary).mood,
+        i: common_vendor.o(($event) => common_vendor.unref(writeDiary).mood = $event.detail.value)
       };
     };
   }
