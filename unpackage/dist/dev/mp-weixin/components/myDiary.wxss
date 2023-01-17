@@ -1,0 +1,42 @@
+.Box.data-v-acde24a9 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Box .diary.data-v-acde24a9 {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 3rpx;
+}
+.Box .diary .padding.data-v-acde24a9 {
+  width: 100%;
+}
+.Box .diary .padding .item.data-v-acde24a9 {
+  width: 100%;
+  height: 450rpx;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.Box .diary .padding .item .noPhoto.data-v-acde24a9 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: small;
+  color: gray;
+}
+.Box .diary .padding .item .noPhoto text.data-v-acde24a9 {
+  margin-top: 10rpx;
+}
+.Box .diary .padding .item .noPhoto .message.data-v-acde24a9 {
+  font-size: x-small;
+  color: #000;
+}
+.Box .diary .padding .time.data-v-acde24a9 {
+  box-sizing: border-box;
+  border: 1rpx solid gray;
+  border-top: 0;
+  text-align: center;
+  font-size: medium;
+}

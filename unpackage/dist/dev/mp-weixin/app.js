@@ -7,11 +7,12 @@ const js_way = require("./js/way.js");
 const store_index = require("./store/index.js");
 require("./store/writeDiary.js");
 require("./store/wallpaper.js");
+require("./store/readDiary.js");
 if (!Math) {
   "./pages/wallpaper/wallpaper.js";
   "./pages/record/record.js";
   "./pages/my/my.js";
-  "./myPage/previewWallpaper/previewWallpaper.js";
+  "./myPage/readDiary/readDiary.js";
 }
 const _sfc_main = {
   onLaunch: async function() {
@@ -62,6 +63,7 @@ const _sfc_main = {
       store_index.store.commit("changeUserInfo", { name: "id", value: userInfo.userId });
       store_index.store.commit("changeUserInfo", { name: "userImage", value: userInfo.userImage });
       store_index.store.commit("wallpaper/changeState", { name: "loveImage", value: userInfo.heartWallpapwer });
+      store_index.store.dispatch("readDiary/getDairy");
     } else {
       wallpaperJwt();
     }

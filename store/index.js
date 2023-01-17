@@ -1,6 +1,7 @@
 import {createStore} from 'vuex'
 import writeDiary from './writeDiary.js'
 import wallpaper from './wallpaper.js'
+import readDiary from './readDiary.js'
 
 const store =  createStore({
 	state:{
@@ -30,7 +31,8 @@ const store =  createStore({
 	actions:{},
 	modules:{
 		writeDiary,
-		wallpaper
+		wallpaper,
+		readDiary
 	}
 })
 

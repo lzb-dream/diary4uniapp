@@ -76,6 +76,8 @@ async function login(){
 		myStore.commit('changeUserInfo',{name:'userImage',value:resData.userImage})
 		// 初始化喜欢的图片
 		myStore.commit('wallpaper/changeState',{name:'loveImage',value:resData.heartWallpapwer})
+		// 初始化日记列表
+		myStore.dispatch('readDiary/getDairy')
 	}else{
 		showToast('登录请求失败','error')
 	}

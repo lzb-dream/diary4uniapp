@@ -34,13 +34,28 @@ const _sfc_main = {
         let diaryId = res.data.diaryId;
         console.log(diaryId);
         for (let i = 0; i < writeDairy.imageList.length; i++) {
-          js_request.uploadfile({
+          await js_request.uploadfile({
             url: "media",
             filePath: writeDairy.imageList[i],
             formData: { diaryId, index: i, writeTime: writeDairy.writeTime, type: "image" },
             name: "media"
           });
         }
+        for (let j = 0; j < writeDairy.videoList.length; j++) {
+          await js_request.uploadfile({
+            url: "media",
+            filePath: writeDairy.videoList[j],
+            formData: { diaryId, index: j, writeTime: writeDairy.writeTime, type: "video" },
+            name: "media"
+          });
+          await js_request.uploadfile({
+            url: "media",
+            filePath: writeDairy.videoPhotoList[j],
+            formData: { diaryId, index: j, writeTime: writeDairy.writeTime, type: "videoPhoto" },
+            name: "media"
+          });
+        }
+        myStore.dispatch("readDiary/getDairy");
       }
     }
     let recordImage = `${myStore.state.URL.replace("api/", "")}static/set/recordImage.jpg`;

@@ -53,6 +53,8 @@
 				store.commit('changeUserInfo',{name:'userImage',value:userInfo.userImage})
 				// 初始化喜欢的图片
 				store.commit('wallpaper/changeState',{name:'loveImage',value:userInfo.heartWallpapwer})
+				// 初始化日记列表
+				store.dispatch('readDiary/getDairy')
 			}else{
 				wallpaperJwt()
 			}

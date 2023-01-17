@@ -48,6 +48,7 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
         myStore.commit("changeUserInfo", { name: "id", value: resData.userId });
         myStore.commit("changeUserInfo", { name: "userImage", value: resData.userImage });
         myStore.commit("wallpaper/changeState", { name: "loveImage", value: resData.heartWallpapwer });
+        myStore.dispatch("readDiary/getDairy");
       } else {
         js_way.showToast("\u767B\u5F55\u8BF7\u6C42\u5931\u8D25", "error");
       }

@@ -2,6 +2,7 @@
 const common_vendor = require("../common/vendor.js");
 const store_writeDiary = require("./writeDiary.js");
 const store_wallpaper = require("./wallpaper.js");
+const store_readDiary = require("./readDiary.js");
 const store = common_vendor.createStore({
   state: {
     URL: "http://127.0.0.1:8000/api/",
@@ -30,7 +31,8 @@ const store = common_vendor.createStore({
   actions: {},
   modules: {
     writeDiary: store_writeDiary.writeDiary,
-    wallpaper: store_wallpaper.wallpaper
+    wallpaper: store_wallpaper.wallpaper,
+    readDiary: store_readDiary.readDiary
   }
 });
 exports.store = store;

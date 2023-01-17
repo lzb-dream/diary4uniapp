@@ -72,7 +72,7 @@ function previewImage(imageUrl){
 		urls:[imageUrl]
 	})
 }
-
+// 删除选择的视频或者图片
 function deleteMedia(media,Type){
 	myStore.commit('writeDiary/pop',{name:Type,value:media})
 	if(Type==="video"){

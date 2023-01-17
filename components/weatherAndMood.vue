@@ -11,11 +11,11 @@
 		<view class="weathermood">
 			<view class="item">
 				<label for="weather">天气：</label>
-				<input type="text" id="weather" v-model="writeDiary.weather">
+				<input type="text" id="weather" v-model="writeDiary.weather" maxlength="10">
 			</view>
 			<view class="item">
 				<label for="mood">心情：</label>
-				<input type="text" id="mood" v-model="writeDiary.mood">
+				<input type="text" id="mood" v-model="writeDiary.mood" maxlength="10">
 			</view>
 		</view>
 	</view>

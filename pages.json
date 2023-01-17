@@ -29,7 +29,7 @@
 			"pages": [
 				{
 					// "needLogin": true
-					"path": "previewWallpaper/previewWallpaper",
+					"path": "readDiary/readDiary",
 					"style": {
 						"navigationStyle": "custom"
 					}

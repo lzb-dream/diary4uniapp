@@ -37,15 +37,22 @@ async function saveDiary(){
 		let diaryId = res.data.diaryId
 		console.log(diaryId);
 		for (let i = 0; i < writeDairy.imageList.length; i++) {
-			uploadfile({url:'media',
+			await uploadfile({url:'media',
 						filePath:writeDairy.imageList[i],
 						formData:{diaryId:diaryId,index:i,writeTime:writeDairy.writeTime,type:'image'},
 						name:'media'})
 		}
-		// for (let j = 0; j < writeDairy.videoList.length; i++) {
-		// 	writeDairy.videoList[j]
-		// 	writeDairy.videoPhotoList[j]
-		// }
+		for (let j = 0; j < writeDairy.videoList.length; j++) {
+			await uploadfile({url:'media',
+						filePath:writeDairy.videoList[j],
+						formData:{diaryId:diaryId,index:j,writeTime:writeDairy.writeTime,type:'video'},
+						name:'media'})
+			await uploadfile({url:'media',
+						filePath:writeDairy.videoPhotoList[j],
+						formData:{diaryId:diaryId,index:j,writeTime:writeDairy.writeTime,type:'videoPhoto'},
+						name:'media'})
+		}
+		myStore.dispatch('readDiary/getDairy')
 	}
 }
 
