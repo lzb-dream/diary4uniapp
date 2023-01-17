@@ -1,0 +1,1 @@
+<view wx:if="{{a}}" class="Box data-v-a694f072" style="{{f}}"><text class="data-v-a694f072">地址：{{b}}</text><text class="data-v-a694f072">天气：{{c}}</text><text class="data-v-a694f072">心情：{{d}}</text><text class="message data-v-a694f072">{{e}}</text></view>
