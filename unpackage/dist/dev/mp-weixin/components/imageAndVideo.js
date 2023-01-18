@@ -29,9 +29,9 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
         return;
       }
       let mediaNumber = writeDiary.imageList.length + writeDiary.videoList.length;
-      if (mediaNumber >= 6) {
+      if (mediaNumber >= 5) {
         common_vendor.index.showModal({
-          title: "\u89C6\u9891\u56FE\u7247\u6570\u91CF\u4E0D\u80FD\u5927\u4E8E6\u4E2A"
+          title: "\u89C6\u9891\u56FE\u7247\u6570\u91CF\u4E0D\u80FD\u5927\u4E8E5\u4E2A"
         });
         return false;
       }
@@ -67,7 +67,10 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
         myStore.commit("writeDiary/pop", { name: "videoPhotoList", value: media });
       }
     }
-    function previewVideo() {
+    function previewVideo(mediaUrl) {
+      common_vendor.index.previewMedia({
+        sources: [mediaUrl]
+      });
     }
     return (_ctx, _cache) => {
       return common_vendor.e({
@@ -89,7 +92,7 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
             a: i,
             b: common_vendor.o(($event) => deleteMedia(i, "videoList"), i),
             c: "d80c39b6-2-" + i0 + ",d80c39b6-1",
-            d: common_vendor.o(($event) => previewVideo(), i),
+            d: common_vendor.o(($event) => previewVideo(i), i),
             e: i
           };
         }),

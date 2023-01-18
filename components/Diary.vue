@@ -10,6 +10,7 @@ import {ref,watch} from 'vue'
 import {useStore} from 'vuex'
 const myStore = useStore()
 let diary = ref('')
+
 watch(diary,()=>{
 	let value = diary.value
 	let judge = diary.value.match(/^\s+$/)
@@ -18,6 +19,10 @@ watch(diary,()=>{
 		return false
 	}
 	myStore.commit('writeDiary/changeState',{name:'diary',value:value})
+})
+
+watch(()=>myStore.state.writeDiary.emptyDiary,()=>{
+	diary.value = ''
 })
 </script>
 

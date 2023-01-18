@@ -9,7 +9,8 @@ export default {
 		diary:'',
 		videoList:[],
 		imageList:[],
-		videoPhotoList:[]
+		videoPhotoList:[],
+		emptyDiary:false
 	},
 	getters:{},
 	mutations:{
@@ -27,6 +28,9 @@ export default {
 			if(a>-1){
 				state[obj.name].splice(a,1)
 			}
+		},
+		empty(state,name){
+			state[name].length = 0
 		}
 		
 	},

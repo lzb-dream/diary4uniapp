@@ -56,6 +56,15 @@ const _sfc_main = {
           });
         }
         myStore.dispatch("readDiary/getDairy");
+        js_way.showToast("\u65E5\u8BB0\u4FDD\u5B58\u6210\u529F", "success");
+        myStore.commit("writeDiary/empty", "videoList");
+        myStore.commit("writeDiary/empty", "videoPhotoList");
+        myStore.commit("writeDiary/empty", "imageList");
+        myStore.commit("writeDiary/changeState", { name: "address", value: "" });
+        myStore.commit("writeDiary/changeState", { name: "weather", value: "" });
+        myStore.commit("writeDiary/changeState", { name: "mood", value: "" });
+        myStore.commit("writeDiary/changeState", { name: "diary", value: "" });
+        myStore.commit("writeDiary/changeState", { name: "emptyDiary", value: !writeDairy.emptyDiary });
       }
     }
     let recordImage = `${myStore.state.URL.replace("api/", "")}static/set/recordImage.jpg`;

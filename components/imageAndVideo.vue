@@ -33,6 +33,8 @@ import {judgeLogin} from '@/js/way.js'
 const myStore = useStore()
 const writeDiary = myStore.state.writeDiary
 
+// const props = defineProps([])
+
 async function choose(){
 	if(!myStore.state.haslogin){
 		judgeLogin()
@@ -40,9 +42,9 @@ async function choose(){
 	}
 	//判断图片与视频数量
 	let mediaNumber = writeDiary.imageList.length+writeDiary.videoList.length
-	if (mediaNumber>=6){
+	if (mediaNumber>=5){
 		uni.showModal({
-			title:'视频图片数量不能大于6个'
+			title:'视频图片数量不能大于5个'
 		})
 		return false
 	}
@@ -80,13 +82,12 @@ function deleteMedia(media,Type){
 	}
 }
 
-function previewVideo(){
-	
+function previewVideo(mediaUrl){
+	uni.previewMedia({
+		sources:[mediaUrl]
+	})
 }
 
-function deleteVideo(){
-	
-}
 	
 </script>
 

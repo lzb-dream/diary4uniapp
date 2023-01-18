@@ -5,7 +5,7 @@
 		</view>
 		<view class="address">
 			<label for="address">地址:</label>
-			<input id="address" type="text" v-model="writeDiary.address"/>
+			<input id="address" type="text" v-model="writeDiary.address" maxlength="35"/>
 			<uni-icons type="location-filled" size="30" color="red" @click="getAddress()"></uni-icons>
 		</view>
 		<view class="weathermood">

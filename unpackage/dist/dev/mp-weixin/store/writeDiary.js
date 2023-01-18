@@ -10,7 +10,8 @@ const writeDiary = {
     diary: "",
     videoList: [],
     imageList: [],
-    videoPhotoList: []
+    videoPhotoList: [],
+    emptyDiary: false
   },
   getters: {},
   mutations: {
@@ -28,6 +29,9 @@ const writeDiary = {
       if (a > -1) {
         state[obj.name].splice(a, 1);
       }
+    },
+    empty(state, name) {
+      state[name].length = 0;
     }
   },
   actions: {}

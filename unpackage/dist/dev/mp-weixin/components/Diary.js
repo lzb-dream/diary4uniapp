@@ -13,6 +13,9 @@ const _sfc_main = {
       }
       myStore.commit("writeDiary/changeState", { name: "diary", value });
     });
+    common_vendor.watch(() => myStore.state.writeDiary.emptyDiary, () => {
+      diary.value = "";
+    });
     return (_ctx, _cache) => {
       return {
         a: common_vendor.unref(diary),

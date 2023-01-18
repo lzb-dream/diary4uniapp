@@ -34,15 +34,12 @@ const _sfc_main = {
           return common_vendor.e({
             a: diaryJudeg(i)
           }, diaryJudeg(i) ? {
-            b: common_vendor.t(i.address),
-            c: common_vendor.t(i.weather),
-            d: common_vendor.t(i.mood),
-            e: common_vendor.t(i.diary)
+            b: common_vendor.t(i.diary)
           } : {}, {
-            f: common_vendor.s(styleVideoPhoto(i)),
-            g: common_vendor.t(i.writeTime.split(" ")[0]),
-            h: index,
-            i: common_vendor.o(($event) => checkDiary(index), index)
+            c: common_vendor.s(styleVideoPhoto(i)),
+            d: common_vendor.t(i.writeTime.split(" ")[0]),
+            e: index,
+            f: common_vendor.o(($event) => checkDiary(index), index)
           });
         })
       };

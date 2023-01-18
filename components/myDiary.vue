@@ -4,9 +4,6 @@
 			<view class="padding">
 				<view class="item" :style="styleVideoPhoto(i)">
 					<view class="noPhoto" v-if="diaryJudeg(i)">
-						<text class="address">地址：{{i.address}}</text>
-						<text>天气：{{i.weather}}</text>
-						<text>心情：{{i.mood}}</text>
 						<text class="message">{{i.diary}}</text>
 					</view>
 				</view>
@@ -75,7 +72,7 @@ function checkDiary(index){
 				width: 100%;
 				.item {
 					width: 100%;
-					height: 450rpx;
+					height: 430rpx;
 					background-size: 100% 100%;
 					background-repeat:no-repeat;
 					.noPhoto {
@@ -84,14 +81,11 @@ function checkDiary(index){
 						display: flex;
 						flex-direction: column;
 						align-items: center;
-						font-size: small;
-						color: gray;
-						text {
-							margin-top: 10rpx;
-						}
+						text-align: center;
 						.message{
-							font-size: x-small;
-							color: #000;
+							margin-top: 10rpx;
+							font-size: medium;
+							color: #696969;
 						}
 					}
 				}

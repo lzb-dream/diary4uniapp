@@ -16,7 +16,7 @@ import ImageAndVideo from '@/components/imageAndVideo.vue'
 import Diary from '@/components/Diary.vue'
 import {useStore} from 'vuex'
 import {requests,uploadfile} from "@/js/request.js"
-import {judgeLogin} from '@/js/way.js'
+import {judgeLogin, showToast} from '@/js/way.js'
 
 const myStore = useStore()
 const writeDairy = myStore.state.writeDiary
@@ -53,6 +53,15 @@ async function saveDiary(){
 						name:'media'})
 		}
 		myStore.dispatch('readDiary/getDairy')
+		showToast('日记保存成功','success')
+		myStore.commit('writeDiary/empty','videoList')
+		myStore.commit('writeDiary/empty','videoPhotoList')
+		myStore.commit('writeDiary/empty','imageList')
+		myStore.commit('writeDiary/changeState',{name:'address',value:''})
+		myStore.commit('writeDiary/changeState',{name:'weather',value:''})
+		myStore.commit('writeDiary/changeState',{name:'mood',value:''})
+		myStore.commit('writeDiary/changeState',{name:'diary',value:''})
+		myStore.commit('writeDiary/changeState',{name:'emptyDiary',value:!writeDairy.emptyDiary})
 	}
 }
 
