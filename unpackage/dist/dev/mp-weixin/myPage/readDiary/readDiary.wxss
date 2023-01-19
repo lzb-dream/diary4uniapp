@@ -5,8 +5,21 @@
 .data-v-a694f072 .uni-collapse-item__title-box {
   background-color: transparent;
 }
+input.data-v-a694f072 {
+  border-bottom: 1px solid gray;
+}
 .back.data-v-a694f072 {
   margin-top: var(--a694f072-statusBarHeight);
+}
+.updateInco.data-v-a694f072 {
+  width: 50rpx;
+  height: 50rpx;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 15%;
+}
+.Box.data-v-a694f072 {
+  color: gray;
 }
 .Box .day.data-v-a694f072 {
   text-align: center;
@@ -17,13 +30,28 @@
 }
 .Box .weather.data-v-a694f072,
 .Box .mood.data-v-a694f072 {
+  display: flex;
   text-align: center;
   margin-top: 20rpx;
+  width: 100%;
+  justify-content: center;
+}
+.Box .weather input.data-v-a694f072,
+.Box .mood input.data-v-a694f072 {
+  width: 40%;
 }
 .Box .message.data-v-a694f072 {
-  color: gray;
+  font-size: 34rpx;
+  color: #000;
   margin: 20rpx 0;
-  padding: 0 10rpx;
+  padding: 0 15rpx;
+}
+.Box .message text.data-v-a694f072 {
+  line-height: 180%;
+}
+.Box .message textarea.data-v-a694f072 {
+  width: 100%;
+  line-height: 180%;
 }
 .Box .Media.data-v-a694f072 {
   display: flex;
@@ -43,6 +71,16 @@
   height: 100%;
   border-radius: 15rpx;
 }
+.Box .Media .itemMedia .incorrect.data-v-a694f072 {
+  width: 35rpx;
+  height: 35rpx;
+  display: inline-block;
+  background-image: url('http://127.0.0.1:8000/static/set/incorrect.png');
+  background-size: 100% 100%;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+}
 .Box .Media .itemMedia .play.data-v-a694f072 {
   z-index: 99;
   position: absolute;
@@ -50,22 +88,43 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.Box .Media .addMedia.data-v-a694f072 {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 10rpx;
+  border: 5px solid darkgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  z-index: 99;
+}
 .Box .address.data-v-a694f072 {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-right: 30rpx;
   margin-top: 30rpx;
 }
 .Box .address .address_item.data-v-a694f072 {
-  width: 30%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.Box .address .address_item text.data-v-a694f072 {
+.Box .address .address_item .address_item_item.data-v-a694f072 {
+  width: 100%;
   margin-top: 10rpx;
+  display: flex;
+  justify-content: center;
+}
+.Box .address .address_item .address_item_item input.data-v-a694f072 {
+  width: 60%;
+}
+.Box .address .address_item .time.data-v-a694f072 {
+  margin-top: 30rpx;
+  margin-bottom: 50rpx;
 }
 
 

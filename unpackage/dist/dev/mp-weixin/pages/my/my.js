@@ -3,12 +3,14 @@ const common_vendor = require("../../common/vendor.js");
 const js_request = require("../../js/request.js");
 const js_way = require("../../js/way.js");
 if (!Array) {
+  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_segmented_control2 = common_vendor.resolveComponent("uni-segmented-control");
-  _easycom_uni_segmented_control2();
+  (_easycom_uni_icons2 + _easycom_uni_segmented_control2)();
 }
+const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
 const _easycom_uni_segmented_control = () => "../../uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.js";
 if (!Math) {
-  (_easycom_uni_segmented_control + MyDiary + LoveWallpaper)();
+  (_easycom_uni_icons + _easycom_uni_segmented_control + MyDiary + LoveWallpaper)();
 }
 const MyDiary = () => "../../components/myDiary.js";
 const LoveWallpaper = () => "../../components/loveWallpaper.js";
@@ -60,26 +62,31 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
         a: _ctx.$store.state.haslogin
       }, _ctx.$store.state.haslogin ? common_vendor.e({
         d: common_vendor.t(_ctx.$store.state.userInfo.nickName),
-        e: _ctx.$store.state.URL.replace("api/", "") + _ctx.$store.state.userInfo.userImage
+        e: _ctx.$store.state.URL.replace("api/", "") + _ctx.$store.state.userInfo.userImage,
+        f: common_vendor.p({
+          type: "gear",
+          size: "30",
+          color: "gray"
+        })
       }, {
-        f: common_vendor.s(_ctx.__cssVars())
+        g: common_vendor.s(_ctx.__cssVars())
       }) : {}, {
-        g: common_vendor.o(($event) => onClickItem($event)),
-        h: common_vendor.p({
+        h: common_vendor.o(($event) => onClickItem($event)),
+        i: common_vendor.p({
           current: common_vendor.unref(current),
           values: items,
           ["active-color"]: "#6da6be"
         }),
-        i: common_vendor.unref(current) === 0
+        j: common_vendor.unref(current) === 0
       }, common_vendor.unref(current) === 0 ? {} : {}, {
-        j: common_vendor.unref(current) === 1
+        k: common_vendor.unref(current) === 1
       }, common_vendor.unref(current) === 1 ? {} : {}, {
-        k: common_vendor.s(_ctx.__cssVars()),
-        l: !_ctx.$store.state.haslogin
+        l: common_vendor.s(_ctx.__cssVars()),
+        m: !_ctx.$store.state.haslogin
       }, !_ctx.$store.state.haslogin ? {
-        m: _ctx.$store.state.URL.replace("api/", "") + "static/set/login.png",
-        n: common_vendor.o(login),
-        o: common_vendor.s(_ctx.__cssVars())
+        n: _ctx.$store.state.URL.replace("api/", "") + "static/set/login.png",
+        o: common_vendor.o(login),
+        p: common_vendor.s(_ctx.__cssVars())
       } : {});
     };
   }

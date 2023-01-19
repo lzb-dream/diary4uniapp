@@ -20,6 +20,9 @@
 					<text class="nickname">{{$store.state.userInfo.nickName}}</text>
 					<image :src="$store.state.URL.replace('api/','')+$store.state.userInfo.userImage"></image>
 				</view>
+				<view class="setting">
+					<uni-icons type="gear" size="30" color="gray"></uni-icons>
+				</view>
 			</view>
 		</template>
 	</view>
@@ -101,6 +104,7 @@ console.log(loginImageHeight);
 <style scoped lang="less">
 	.persona {
 		.Homepage {
+			position: relative;
 			width: 100%;
 			height: 500rpx;
 			background-color: aqua;
@@ -116,6 +120,12 @@ console.log(loginImageHeight);
 					text-align: center;
 					color: grey;
 				}
+			}
+			.setting {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				transform: translate(-50%,-50%);
 			}
 		}
 		

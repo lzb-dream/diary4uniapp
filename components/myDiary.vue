@@ -1,5 +1,5 @@
 <template>
-	<view class="Box">
+	<view class="Box" v-if="false">
 		<view class="diary" v-for="(i,index) in readDiary.diaryList" :key="index" @click="checkDiary(index)">
 			<view class="padding">
 				<view class="item" :style="styleVideoPhoto(i)">
@@ -12,6 +12,11 @@
 				</view>
 			</view>
 		</view>
+	</view>
+	<view class="protectionDiary">
+		<label for="password">日记密码：</label>
+		<input type="safe-password" id="password" placeholder="请输入密码" auto-focus="true">
+		<button>确认</button>
 	</view>
 </template>
 
@@ -72,8 +77,9 @@ function checkDiary(index){
 				width: 100%;
 				.item {
 					width: 100%;
-					height: 430rpx;
-					background-size: 100% 100%;
+					height: 480rpx;
+					background-size: cover;
+					background-position: center;
 					background-repeat:no-repeat;
 					.noPhoto {
 						width: 100%;
@@ -82,6 +88,7 @@ function checkDiary(index){
 						flex-direction: column;
 						align-items: center;
 						text-align: center;
+						overflow: hidden;
 						.message{
 							margin-top: 10rpx;
 							font-size: medium;
@@ -100,5 +107,23 @@ function checkDiary(index){
 		}
 	}
 	
-
+	.protectionDiary {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 350rpx;
+		button {
+			padding: 0;
+			margin: 0;
+			height: 50rpx;
+			font-size: medium;
+			text-align: center;
+			line-height: 50rpx;
+		}
+		input {
+			border-bottom: 1px solid gray;
+			text-align: center;
+		}
+	}
 </style>

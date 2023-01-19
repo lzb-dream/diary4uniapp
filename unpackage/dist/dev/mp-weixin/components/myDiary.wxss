@@ -13,8 +13,9 @@
 }
 .Box .diary .padding .item.data-v-acde24a9 {
   width: 100%;
-  height: 430rpx;
-  background-size: 100% 100%;
+  height: 480rpx;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 .Box .diary .padding .item .noPhoto.data-v-acde24a9 {
@@ -24,6 +25,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 .Box .diary .padding .item .noPhoto .message.data-v-acde24a9 {
   margin-top: 10rpx;
@@ -36,4 +38,23 @@
   border-top: 0;
   text-align: center;
   font-size: medium;
+}
+.protectionDiary.data-v-acde24a9 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 350rpx;
+}
+.protectionDiary button.data-v-acde24a9 {
+  padding: 0;
+  margin: 0;
+  height: 50rpx;
+  font-size: medium;
+  text-align: center;
+  line-height: 50rpx;
+}
+.protectionDiary input.data-v-acde24a9 {
+  border-bottom: 1px solid gray;
+  text-align: center;
 }

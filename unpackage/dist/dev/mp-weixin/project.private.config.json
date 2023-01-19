@@ -10,7 +10,7 @@
       "list": [
         {
           "name": "",
-          "pathName": "myPage/previewWallpaper/previewWallpaper",
+          "pathName": "pages/my/my",
           "query": "",
           "launchMode": "default",
           "scene": null

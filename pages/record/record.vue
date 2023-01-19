@@ -92,7 +92,8 @@ console.log(statusBarHeight);
 			transform: translateX(-50%);
 			z-index: 2;
 			height: 90rpx;
-			background-color: paleturquoise;
+			color: hotpink;
+			background-image: linear-gradient(to bottom right, rgba(247, 240, 172, 0.5), rgba(172, 247, 240, 0.57), rgba(240, 172, 247, 0.55));
 		}
 	}
 </style>

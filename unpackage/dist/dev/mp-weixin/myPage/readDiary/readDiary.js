@@ -21,7 +21,9 @@ const _sfc_main = {
     const myStore = common_vendor.useStore();
     const readDiary = myStore.state.readDiary;
     const diary = common_vendor.ref(false);
+    const incoStyle = common_vendor.ref("background-image: url('http://127.0.0.1:8000/static/set/updateDiary.png')");
     let index = null;
+    let updateSwitch = common_vendor.ref(true);
     let url = myStore.state.URL.replace("api/", "");
     common_vendor.onLoad((option) => {
       index = Number(option.index);
@@ -29,6 +31,15 @@ const _sfc_main = {
     common_vendor.onMounted(() => {
       diary.value = readDiary.diaryList[index];
     });
+    function changeUpdate() {
+      if (updateSwitch.value) {
+        updateSwitch.value = false;
+        incoStyle.value = "background-image: url('http://127.0.0.1:8000/static/set/saveUpdateDiary.png')";
+      } else {
+        updateSwitch.value = true;
+        incoStyle.value = "background-image: url('http://127.0.0.1:8000/static/set/updateDiary.png')";
+      }
+    }
     function getWeek(time) {
       let week = new Date(time).getDay();
       if (week == 0) {
@@ -68,44 +79,91 @@ const _sfc_main = {
         c: common_vendor.s(_ctx.__cssVars()),
         d: diary.value
       }, diary.value ? common_vendor.e({
-        e: common_vendor.t(diary.value.writeTime.split(" ")[0]),
-        f: common_vendor.t(getWeek(diary.value.writeTime.split(" ")[0])),
-        g: common_vendor.t(diary.value.weather),
-        h: common_vendor.t(diary.value.mood),
-        i: diary.value.image.length > 0
+        e: common_vendor.o(changeUpdate),
+        f: common_vendor.s(incoStyle.value),
+        g: common_vendor.t(diary.value.writeTime.split(" ")[0]),
+        h: common_vendor.t(getWeek(diary.value.writeTime.split(" ")[0])),
+        i: diary.value.weather || !common_vendor.unref(updateSwitch)
+      }, diary.value.weather || !common_vendor.unref(updateSwitch) ? common_vendor.e({
+        j: common_vendor.unref(updateSwitch)
+      }, common_vendor.unref(updateSwitch) ? {
+        k: common_vendor.t(diary.value.weather)
+      } : {
+        l: diary.value.weather,
+        m: common_vendor.o(($event) => diary.value.weather = $event.detail.value)
+      }) : {}, {
+        n: diary.value.video.length > 0 && diary.value.image.length > 0 || !common_vendor.unref(updateSwitch)
+      }, diary.value.video.length > 0 && diary.value.image.length > 0 || !common_vendor.unref(updateSwitch) ? common_vendor.e({
+        o: common_vendor.unref(updateSwitch)
+      }, common_vendor.unref(updateSwitch) ? {
+        p: common_vendor.t(diary.value.mood)
+      } : {
+        q: diary.value.mood,
+        r: common_vendor.o(($event) => diary.value.mood = $event.detail.value)
+      }) : {}, {
+        s: diary.value.mood || !common_vendor.unref(updateSwitch)
+      }, diary.value.mood || !common_vendor.unref(updateSwitch) ? common_vendor.e({
+        t: diary.value.image.length > 0
       }, diary.value.image.length > 0 ? {
-        j: common_vendor.f(diary.value.image, (i, index2, i0) => {
+        v: common_vendor.f(diary.value.image, (i, index2, i0) => {
           return {
             a: common_vendor.unref(url) + i,
             b: common_vendor.o(($event) => previewMedia("image", common_vendor.unref(url) + i), i),
-            c: i
+            c: common_vendor.o(($event) => _ctx.deleteMedia(i, "videoList"), i),
+            d: i
           };
         })
       } : {}, {
-        k: diary.value.video.length > 0
+        w: diary.value.video.length > 0
       }, diary.value.video.length > 0 ? {
-        l: common_vendor.f(diary.value.video, (i, index2, i0) => {
+        x: common_vendor.f(diary.value.video, (i, index2, i0) => {
           return {
             a: common_vendor.unref(url) + i,
-            b: "a694f072-3-" + i0 + ",a694f072-2",
-            c: common_vendor.o(($event) => previewMedia("video", common_vendor.unref(url) + i), i),
-            d: i
+            b: common_vendor.o(($event) => _ctx.deleteMedia(i, "videoList"), i),
+            c: "a694f072-3-" + i0 + ",a694f072-2",
+            d: common_vendor.o(($event) => previewMedia("video", common_vendor.unref(url) + i), i),
+            e: i
           };
         }),
-        m: common_vendor.p({
+        y: common_vendor.p({
           type: "videocam",
           size: "35",
           color: "#00F5FF"
         })
       } : {}, {
-        n: common_vendor.p({
-          title: "\u89C6\u9891\u6216\u56FE\u7247",
-          open: false
+        z: !common_vendor.unref(updateSwitch)
+      }, !common_vendor.unref(updateSwitch) ? {
+        A: common_vendor.p({
+          type: "plusempty",
+          size: "45",
+          color: "darkgray"
         }),
-        o: common_vendor.t(diary.value.diary),
-        p: common_vendor.t(diary.value.address),
-        q: common_vendor.t(diary.value.writeTime.split(" ")[1]),
-        r: common_vendor.s(_ctx.__cssVars())
+        B: common_vendor.o(() => {
+        })
+      } : {}, {
+        C: common_vendor.p({
+          title: "\u89C6\u9891\u6216\u56FE\u7247",
+          open: !common_vendor.unref(updateSwitch)
+        })
+      }) : {}, {
+        D: common_vendor.unref(updateSwitch)
+      }, common_vendor.unref(updateSwitch) ? {
+        E: common_vendor.t(diary.value.diary)
+      } : {
+        F: diary.value.diary,
+        G: common_vendor.o(($event) => diary.value.diary = $event.detail.value)
+      }, {
+        H: diary.value.mood || !common_vendor.unref(updateSwitch)
+      }, diary.value.mood || !common_vendor.unref(updateSwitch) ? common_vendor.e({
+        I: common_vendor.unref(updateSwitch)
+      }, common_vendor.unref(updateSwitch) ? {
+        J: common_vendor.t(diary.value.address)
+      } : {
+        K: diary.value.address,
+        L: common_vendor.o(($event) => diary.value.address = $event.detail.value)
+      }) : {}, {
+        M: common_vendor.t(diary.value.writeTime.split(" ")[1]),
+        N: common_vendor.s(_ctx.__cssVars())
       }) : {});
     };
   }
