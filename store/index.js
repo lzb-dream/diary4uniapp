@@ -9,7 +9,9 @@ const store =  createStore({
 		statusBarHeight:'',
 		screenHeight:'',
 		tabbarheight : '',
-		haslogin : false,
+		screenWidth:'',
+		haslogin: false,
+		passWordStatus:true,
 		userInfo:{
 			nickName:'',
 			userId:'',

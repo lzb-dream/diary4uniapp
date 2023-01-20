@@ -15,7 +15,7 @@
 			<view class="imageFather" v-for="(leftImage,leftIndex) in data['imageList']" :key="leftIndex">
 				<image :src="leftImage['minImage']" mode="widthFix" @click.stop="clickImage(leftImage)"></image>
 				<view class="message">
-					<image :src="$store.state.URL.replace('api/','')+'static/set/download.png'" mode="widthFix" @click="deleteImage(data.tableName,leftImage.id)"></image>
+					<!-- <image :src="$store.state.URL.replace('api/','')+'static/set/download.png'" mode="widthFix" @click="deleteImage(data.tableName,leftImage.id)"></image> -->
 					<checkbox-group name="" @change="changeCheckbox($event,leftImage.id,data.tableS,leftImage.maxImage)">
 						<label>
 							<checkbox class="red round" :disabled="heartSwitch"/><text></text>
@@ -136,7 +136,11 @@ function scroll(e){
 
 // 点击小图片
 function clickImage(data){
-	console.log(data.id);
+	if(!myStore.state.haslogin){
+		judgeLogin()
+		return
+	}
+	
 	uni.previewImage({
 		urls:[data.maxImage]
 	})

@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
+const store_index = require("../store/index.js");
 function time() {
   var data = new Date();
   var Y = data.getFullYear();
@@ -34,7 +35,17 @@ function judgeLogin() {
     }
   });
 }
+function prefix(mediaurl) {
+  let url = store_index.store.state.URL.replace("api/", "");
+  let judge = mediaurl.indexOf("static");
+  if (judge > -1) {
+    return url + mediaurl;
+  } else {
+    return mediaurl;
+  }
+}
 exports.judgeLogin = judgeLogin;
+exports.prefix = prefix;
 exports.rpxTopx = rpxTopx;
 exports.showToast = showToast;
 exports.time = time;

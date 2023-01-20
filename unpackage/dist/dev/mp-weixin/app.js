@@ -17,10 +17,13 @@ if (!Math) {
 const _sfc_main = {
   onLaunch: async function() {
     console.log("App Launch");
-    let statusBarHeight = common_vendor.index.getSystemInfoSync().statusBarHeight;
-    let screenHeight = common_vendor.index.getSystemInfoSync().screenHeight;
+    const systemInfo = common_vendor.index.getSystemInfoSync();
+    let statusBarHeight = systemInfo.statusBarHeight;
+    let screenHeight = systemInfo.screenHeight;
+    let screenWidth = systemInfo.screenWidth;
     this.$store.commit("changeState", { name: "statusBarHeight", value: statusBarHeight });
     this.$store.commit("changeState", { name: "screenHeight", value: screenHeight });
+    this.$store.commit("changeState", { name: "screenWidth", value: screenWidth });
     js_interceptor.request(this.$store.state.URL);
     var tabbarheight = common_vendor.index.getSystemInfoSync().screenHeight - common_vendor.index.getSystemInfoSync().safeArea.bottom + 50;
     this.$store.commit("changeState", { name: "tabbarheight", value: tabbarheight });

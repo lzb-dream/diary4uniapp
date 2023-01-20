@@ -1,4 +1,12 @@
 <template>
+	<uni-popup ref="popup" :is-mask-click="true" backgroundColor="#fff">
+		<view class="Pop_up">
+			<view class="Pop_up_item">
+				<button open-type="contact">与客服聊天</button>
+				<button @click="outLogin">退出登录</button>
+			</view>
+		</view>
+	</uni-popup>
 	<view class="persona" v-if="$store.state.haslogin">
 		<template v-if="false">
 			<view class="Homepage">
@@ -9,9 +17,7 @@
 						<text>请点击更换头像</text>
 					</button>
 				</view>
-
 			</view>
-
 		</template>
 
 		<template v-else>
@@ -20,7 +26,7 @@
 					<text class="nickname">{{$store.state.userInfo.nickName}}</text>
 					<image :src="$store.state.URL.replace('api/','')+$store.state.userInfo.userImage"></image>
 				</view>
-				<view class="setting">
+				<view class="setting" @click="open">
 					<uni-icons type="gear" size="30" color="gray"></uni-icons>
 				</view>
 			</view>
@@ -50,6 +56,18 @@ import LoveWallpaper from '@/components/loveWallpaper.vue'
 import {showToast} from '@/js/way.js'
 const myStore = useStore()
 const items = ['我写的日记', '喜欢的图片']
+
+const popup = ref('popup')
+function open(){
+	popup.value.open('right')
+}
+// 退出登录
+function outLogin(){
+	uni.removeStorageSync('userInfo');
+	myStore.commit('changeState',{name:'haslogin',value:false})
+	myStore.commit('readDiary/empty')
+}
+
 let current=ref(0)
 
 // 选择头像
@@ -88,9 +106,7 @@ async function login(){
 
 
 let loginImageHeight = myStore.state.screenHeight-myStore.state.tabbarheight+'px'
-console.log(loginImageHeight);
-
-
+let popupWidth = myStore.state.screenWidth/1.5+'px'
 </script>
 <script>
 	export default {
@@ -102,6 +118,23 @@ console.log(loginImageHeight);
 </script>
 
 <style scoped lang="less">
+	.Pop_up {
+		width: v-bind(popupWidth);
+		height: 100%;
+		background-color: #fff;
+		display: flex;
+		flex-direction: column;
+		// justify-content: center;
+		align-items: center;
+		.Pop_up_item {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			button {
+				margin-top: 10rpx;
+			}
+		}
+	}
 	.persona {
 		.Homepage {
 			position: relative;

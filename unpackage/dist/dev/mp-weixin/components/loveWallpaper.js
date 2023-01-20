@@ -2,6 +2,10 @@
 const common_vendor = require("../common/vendor.js");
 const js_request = require("../js/request.js");
 const js_way = require("../js/way.js");
+require("../store/index.js");
+require("../store/writeDiary.js");
+require("../store/wallpaper.js");
+require("../store/readDiary.js");
 const _sfc_main = {
   __name: "loveWallpaper",
   setup(__props) {

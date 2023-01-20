@@ -2,6 +2,10 @@
 const common_vendor = require("../../common/vendor.js");
 const js_request = require("../../js/request.js");
 const js_way = require("../../js/way.js");
+require("../../store/index.js");
+require("../../store/writeDiary.js");
+require("../../store/wallpaper.js");
+require("../../store/readDiary.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   _easycom_uni_icons2();
@@ -26,11 +30,6 @@ const _sfc_main = {
     let loadingStatus = common_vendor.ref(false);
     const topTabbarList = ["\u7F8E\u98DF", "\u76F8\u7EA6", "\u5BB6\u5EAD", "\u5B69\u7AE5"];
     let topNumber = common_vendor.ref(0);
-    async function deleteImage(tableName, id) {
-      console.log(tableName);
-      const res = await js_request.requests({ method: "DELETE", data: { id, tableName }, url: "getWallPaper" });
-      console.log(res.data);
-    }
     function clickToptabbar(index) {
       topShow.value = false;
       if (imageData[index].imageList.length === 0) {
@@ -74,7 +73,10 @@ const _sfc_main = {
       }
     }
     function clickImage(data) {
-      console.log(data.id);
+      if (!myStore.state.haslogin) {
+        js_way.judgeLogin();
+        return;
+      }
       common_vendor.index.previewImage({
         urls: [data.maxImage]
       });
@@ -116,9 +118,8 @@ const _sfc_main = {
               return {
                 a: leftImage["minImage"],
                 b: common_vendor.o(($event) => clickImage(leftImage), leftIndex),
-                c: common_vendor.o(($event) => deleteImage(data.tableName, leftImage.id), leftIndex),
-                d: common_vendor.o(($event) => changeCheckbox($event, leftImage.id, data.tableS, leftImage.maxImage), leftIndex),
-                e: leftIndex
+                c: common_vendor.o(($event) => changeCheckbox($event, leftImage.id, data.tableS, leftImage.maxImage), leftIndex),
+                d: leftIndex
               };
             }),
             b: common_vendor.o(lower, dataIndex),
@@ -127,29 +128,28 @@ const _sfc_main = {
             e: dataIndex === common_vendor.unref(topNumber)
           };
         }),
-        d: _ctx.$store.state.URL.replace("api/", "") + "static/set/download.png",
-        e: common_vendor.unref(heartSwitch),
-        f: scrollTop.value,
-        g: common_vendor.s(_ctx.__cssVars()),
-        h: topShow.value
+        d: common_vendor.unref(heartSwitch),
+        e: scrollTop.value,
+        f: common_vendor.s(_ctx.__cssVars()),
+        g: topShow.value
       }, topShow.value ? {
-        i: common_vendor.p({
+        h: common_vendor.p({
           type: "arrow-up",
           size: "35",
           color: "#00F5FF"
         }),
-        j: common_vendor.o(backTop),
-        k: common_vendor.s(_ctx.__cssVars())
+        i: common_vendor.o(backTop),
+        j: common_vendor.s(_ctx.__cssVars())
       } : {}, {
-        l: common_vendor.p({
+        k: common_vendor.p({
           type: "refresh",
           size: "35",
           color: "#00F5FF"
         }),
-        m: common_vendor.o(reset),
+        l: common_vendor.o(reset),
+        m: common_vendor.s(_ctx.__cssVars()),
         n: common_vendor.s(_ctx.__cssVars()),
-        o: common_vendor.s(_ctx.__cssVars()),
-        p: common_vendor.p({
+        o: common_vendor.p({
           status: common_vendor.unref(loadingStatus)
         })
       });

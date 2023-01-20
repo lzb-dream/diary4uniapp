@@ -6,10 +6,13 @@
 	export default {
 		onLaunch: async function() {
 			console.log('App Launch')
-			let statusBarHeight = uni.getSystemInfoSync().statusBarHeight
-			let screenHeight = uni.getSystemInfoSync().screenHeight
+			const systemInfo = uni.getSystemInfoSync()
+			let statusBarHeight = systemInfo.statusBarHeight
+			let screenHeight = systemInfo.screenHeight
+			let screenWidth = systemInfo.screenWidth
 			this.$store.commit('changeState',{name:'statusBarHeight',value:statusBarHeight}) 
 			this.$store.commit('changeState',{name:'screenHeight',value:screenHeight}) 
+			this.$store.commit('changeState',{name:'screenWidth',value:screenWidth}) 
 			request(this.$store.state.URL)
 			var tabbarheight = uni.getSystemInfoSync().screenHeight-uni.getSystemInfoSync().safeArea.bottom+50
 			this.$store.commit('changeState',{name:'tabbarheight',value:tabbarheight}) 

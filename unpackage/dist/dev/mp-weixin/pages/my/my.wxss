@@ -1,3 +1,19 @@
+.Pop_up.data-v-2f1ef635 {
+  width: var(--2f1ef635-popupWidth);
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Pop_up .Pop_up_item.data-v-2f1ef635 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.Pop_up .Pop_up_item button.data-v-2f1ef635 {
+  margin-top: 10rpx;
+}
 .persona .Homepage.data-v-2f1ef635 {
   position: relative;
   width: 100%;

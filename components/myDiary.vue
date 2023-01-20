@@ -1,5 +1,5 @@
 <template>
-	<view class="Box" v-if="false">
+	<view class="Box" v-if="true">
 		<view class="diary" v-for="(i,index) in readDiary.diaryList" :key="index" @click="checkDiary(index)">
 			<view class="padding">
 				<view class="item" :style="styleVideoPhoto(i)">
@@ -13,7 +13,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="protectionDiary">
+	<view class="protectionDiary" v-else>
 		<label for="password">日记密码：</label>
 		<input type="safe-password" id="password" placeholder="请输入密码" auto-focus="true">
 		<button>确认</button>
@@ -22,15 +22,16 @@
 
 <script setup>
 import {useStore} from "vuex"
+import {prefix} from "@/js/way.js"
 const myStore = useStore()
 const readDiary = myStore.state.readDiary
 
 // 日记封面样式
 function styleVideoPhoto(i){
 	if(i.image.length>0){
-		return `background-image:url(${myStore.state.URL.replace('api/','')+i.image[0]})`
-	}else if(i.videoPhoto.length>0){
-		return `background-image:url(${myStore.state.URL.replace('api/','')+i.videoPhoto[0]})`
+		return `background-image:url(${prefix(i.image[0])})`
+	// }else if(i.videoPhoto.length>0){
+	// 	return `background-image:url(${prefix(i.videoPhoto[0])})`
 	}else{
 		return `background:	#e9ca9e`
 	}
@@ -49,9 +50,9 @@ function diaryJudeg(i){
 	if (i.image.length>0){
 		return false
 	} 
-	else if(i.videoPhoto.length>0){
-		return false
-	} 
+	// else if(i.videoPhoto.length>0){
+	// 	return false
+	// } 
 	else{
 		return true
 	} 

@@ -15,34 +15,34 @@
 				<input type="text" id="upweather" v-model="diary.weather">
 			</template>
 		</view>
-		<view class="mood" v-if="(diary.video.length>0&&diary.image.length>0)||!updateSwitch">
+		<view class="mood" v-if="diary.mood||!updateSwitch">
 			<text user-select='true' v-if="updateSwitch">{{diary.mood}}</text>
 			<template v-else>
 				<label for="upweather">心情：</label>
 				<input type="text" id="upmood" v-model="diary.mood">
 			</template>
 		</view>
-		<view class="media" v-if="diary.mood||!updateSwitch">
+		<view class="media" v-if="(diary.video.length>0||diary.image.length>0)||!updateSwitch">
 			<uni-collapse>
 				<uni-collapse-item title="视频或图片" :open="!updateSwitch">
 					<view class="Media">
 						<view class="itemMedia" 
 						v-if="diary.image.length>0" 
 						v-for="(i,index) in diary.image" :key="i">
-							<image :src="url+i" alt="" @click="previewMedia('image',url+i)" mode="aspectFill"></image>
-							<text class="incorrect" @click.stop="deleteMedia(i,'videoList')" ></text>
+							<image :src="prefix(i)" alt="" @click="previewMedia('image',prefix(i))" mode="aspectFill"></image>
+							<text class="incorrect" @click.stop="deleteMedia(i,'image')" v-if="!updateSwitch"></text>
 						</view>
 						
-						<view class="itemMedia" @click.stop="previewMedia('video',url+i)" 
+						<view class="itemMedia" @click.stop="previewMedia('video',prefix(i))" 
 						v-if="diary.video.length>0" 
 						v-for="(i,index) in diary.video" :key="i">
-							<video :src="url+i" :show-fullscreen-btn="false" :show-center-play-btn="false" :controls="false"></video>
-							<text class="incorrect" @click.stop="deleteMedia(i,'videoList')" ></text>
+							<video :src="prefix(i)" :show-fullscreen-btn="false" :show-center-play-btn="false" :controls="false"></video>
+							<text class="incorrect" @click.stop="deleteMedia(i,'video')" v-if="!updateSwitch"></text>
 							<view class="play">
 								<uni-icons type="videocam" size="35" color="#00F5FF"></uni-icons>
 							</view>
 						</view>
-						<view class="addMedia" @click="" v-if="!updateSwitch">
+						<view class="addMedia" @click="choose" v-if="!updateSwitch">
 							<uni-icons type="plusempty" size="45" color="darkgray"></uni-icons>
 						</view>
 					</view>
@@ -72,37 +72,152 @@
 <script setup>
 import {useStore} from 'vuex'
 import Loading from '@/components/loading.vue'
-import {showToast} from '@/js/way.js'
-import { onMounted, ref } from "vue";
+import {showToast,prefix,time} from '@/js/way.js'
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import {onLoad} from "@dcloudio/uni-app";
+import {requests,uploadfile} from '@/js/request.js'
 const myStore = useStore()
 const readDiary = myStore.state.readDiary
 const diary = ref(false)
 const incoStyle = ref("background-image: url('http://127.0.0.1:8000/static/set/updateDiary.png')")
 let index = null
+// 复原控件
+let textRecovery = true
+// let mediaRecovery = true
 let updateSwitch = ref(true) 
-let url = myStore.state.URL.replace('api/','')
+
+let id = null
+let diaryText = null
+let address = null
+let mood = null
+let weather = null
+
+// const video=[]
+// const videoPhoto=[]
+// const image=[]
+
+const newvideo=[]
+const newvideoPhoto=[]
+const newimage=[]
 onLoad((option)=>{
 	index = Number(option.index)
 })
 
 onMounted(()=>{
 	diary.value = readDiary.diaryList[index]
+	// 记住原有值以待复原
+	diaryText = diary.value.diary
+	address = diary.value.address
+	mood = diary.value.mood
+	weather = diary.value.weather
+	id = diary.value.id
+	// video.push(...diary.value.video)
+	// videoPhoto.push(...diary.value.videoPhoto)
+	// image.push(...diary.value.image)
+	
 })
 
-function a(){
-	console.log(readDiary.diaryList[index]);
-}
 
-function changeUpdate(){
+onBeforeUnmount(()=>{
+	if(textRecovery){
+		diary.value.diary = diaryText
+		diary.value.address = address
+		diary.value.mood = mood
+		diary.value.weather = weather
+	}
+})
+// 循环上传函数
+async function cyclicUpload(filelist,type){
+	for (var i = 0; i < filelist.length; i++) {
+		let res = await uploadfile({url:"media",
+					filePath:filelist[i],
+					formData:{diaryId:id,writeTime:time(),index:i,type:type},
+					name:'media'})
+		console.log(res);
+	}
+}
+// 修改日记
+// 一秒钟一次
+let change = true
+async function changeUpdate(){
+	var Timer;
+	clearTimeout(Timer)
+	if(!change){
+		return
+	}else{
+		change = false
+		Timer = setTimeout(()=>{
+			change = true
+		},1500)
+	}
 	if(updateSwitch.value){
 		updateSwitch.value = false
 		incoStyle.value = "background-image: url('http://127.0.0.1:8000/static/set/saveUpdateDiary.png')"
 	}else{
+		const res = await requests({url:'diary',method:'PUT',data:{diary:diary.value}})
+		if(res.statusCode==200){
+			textRecovery = false
+		}
+		if(newimage.length>0){
+			await cyclicUpload(newimage,'image')
+		}
+		if(newvideo.length>0){
+			await cyclicUpload(newvideo,'video')
+			await cyclicUpload(newvideoPhoto,'videoPhoto')
+		}
 		updateSwitch.value = true
 		incoStyle.value = "background-image: url('http://127.0.0.1:8000/static/set/updateDiary.png')"
 	}
 
+}
+//删除图片或者视频
+async function deleteMedia(media,Type){
+	let index = diary.value[Type].indexOf(media)
+	diary.value[Type].splice(index,1)
+	if(Type=='video'){
+		diary.value['videoPhoto'].splice(index,1)
+	}
+	if(media.indexOf('static')>-1){
+		 await requests({url:'media',method:'DELETE',data:{type:Type,media:media,id:id}})
+		if(Type=='video'){
+			console.log('执行删除');
+			await requests({url:'media',method:'DELETE',data:{type:'videoPhoto',media:diary.value['videoPhoto'][index],id:id}})
+		}
+	}
+}
+// 添加图片或者视频
+async function choose(){
+	//判断图片与视频数量
+	let mediaNumber = diary.value.image.length+diary.value.video.length
+	if (mediaNumber>=5){
+		uni.showModal({
+			title:'视频图片数量不能大于5个'
+		})
+		return false
+	}
+	let res = await uni.chooseMedia()
+	console.log(res);
+	for (let i = 0; i < res.tempFiles.length; i++) {
+		let tempFilePath = res.tempFiles[i].tempFilePath
+		let size = res.tempFiles[i].size
+		let Type = res.type
+		let videoPhoto = Type==="video"?res.tempFiles[i].thumbTempFilePath:null
+		if (size/1048576>=10){
+			uni.showModal({
+				title:'单个视频不能大于10mb'
+			})
+			return false
+		}
+		if(Type==="image"){
+			diary.value.image.push(tempFilePath)
+			newimage.push(tempFilePath)
+		}else if(Type==="video"){
+			diary.value.video.push(tempFilePath)
+			diary.value.videoPhoto.push(videoPhoto)
+			newvideo.push(tempFilePath)
+			newvideoPhoto.push(videoPhoto)
+		}
+	}
 }
 
 // 计算星期几

@@ -9,7 +9,9 @@ const store = common_vendor.createStore({
     statusBarHeight: "",
     screenHeight: "",
     tabbarheight: "",
+    screenWidth: "",
     haslogin: false,
+    passWordStatus: true,
     userInfo: {
       nickName: "",
       userId: "",

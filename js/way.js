@@ -35,7 +35,7 @@ export function pxToRpx(px) {
    let rpx = (750 / deviceWidth) * Number(px)
    return Math.floor(rpx);
  }
-
+// 判断登录
 export function judgeLogin(){
 	uni.showModal({
 		title:'请登录后操作',
@@ -46,7 +46,17 @@ export function judgeLogin(){
 		}
 	})
 }
-
+import store from'@/store/index.js'
+// 图片与视频前缀判断
+export function prefix(mediaurl){
+	let url = store.state.URL.replace('api/','')
+	let judge = mediaurl.indexOf('static')
+	if(judge>-1){
+		return url+mediaurl
+	}else{
+		return mediaurl
+	}
+}
 // export function s(message,scallBack,fcallBack){
 // 	uni.showModal({
 // 		title:message,

@@ -50,7 +50,7 @@
 				}, 
 				{
 					"pagePath": "pages/wallpaper/wallpaper",
-					"text": "壁纸",
+					"text": "图片",
 					"iconPath": "static/love_0.png",
 					"selectedIconPath": "static/love_1.png"
 				},

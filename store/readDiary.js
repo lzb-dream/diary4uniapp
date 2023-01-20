@@ -20,7 +20,11 @@ export default {
 			if(a>-1){
 				state[obj.name].splice(a,1)
 			}
+		},
+		empty(state){
+			state.diaryList.length=0
 		}
+		
 		
 	},
 	actions:{

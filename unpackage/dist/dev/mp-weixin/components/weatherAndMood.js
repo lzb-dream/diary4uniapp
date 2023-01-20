@@ -1,6 +1,11 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
 const js_way = require("../js/way.js");
+require("../store/index.js");
+require("../store/writeDiary.js");
+require("../store/wallpaper.js");
+require("../js/request.js");
+require("../store/readDiary.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   _easycom_uni_icons2();
