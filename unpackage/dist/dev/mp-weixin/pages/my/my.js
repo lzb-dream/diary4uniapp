@@ -35,6 +35,27 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
     }));
     const myStore = common_vendor.useStore();
     const items = ["\u6211\u5199\u7684\u65E5\u8BB0", "\u559C\u6B22\u7684\u56FE\u7247"];
+    let switchNickname = common_vendor.ref(true);
+    let switchUpNickname = false;
+    function startNickName() {
+      switchNickname.value = false;
+    }
+    common_vendor.watch(() => myStore.state.userInfo.nickName, () => {
+      switchUpNickname = true;
+    });
+    async function endNickName() {
+      if (switchUpNickname) {
+        const res = await js_request.requests({ url: "userup", method: "PUT", data: { nickName: myStore.state.userInfo.nickName } });
+        if (res.statusCode == 200) {
+          js_way.showToast("\u6635\u79F0\u4FEE\u6539\u6210\u529F", "success");
+        }
+        const userInfo = common_vendor.index.getStorageSync("userInfo");
+        userInfo.nickName = myStore.state.userInfo.nickName;
+        common_vendor.index.setStorageSync("userInfo", userInfo);
+        switchUpNickname = false;
+      }
+      switchNickname.value = true;
+    }
     const popup = common_vendor.ref("popup");
     function open() {
       popup.value.open("right");
@@ -43,6 +64,7 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
       common_vendor.index.removeStorageSync("userInfo");
       myStore.commit("changeState", { name: "haslogin", value: false });
       myStore.commit("readDiary/empty");
+      popup.value.close();
     }
     let current = common_vendor.ref(0);
     function onClickItem(e) {
@@ -75,44 +97,54 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
     let popupWidth = myStore.state.screenWidth / 1.5 + "px";
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: common_vendor.o(outLogin),
-        b: common_vendor.sr(popup, "2f1ef635-0", {
+        a: !common_vendor.unref(switchNickname) ? 1 : "",
+        b: common_vendor.unref(switchNickname),
+        c: _ctx.$store.state.userInfo.nickName,
+        d: common_vendor.o(($event) => _ctx.$store.state.userInfo.nickName = $event.detail.value),
+        e: common_vendor.unref(switchNickname)
+      }, common_vendor.unref(switchNickname) ? {
+        f: common_vendor.o(startNickName)
+      } : {
+        g: common_vendor.o(endNickName)
+      }, {
+        h: common_vendor.o(outLogin),
+        i: common_vendor.sr(popup, "2f1ef635-0", {
           "k": "popup"
         }),
-        c: common_vendor.s(_ctx.__cssVars()),
-        d: common_vendor.p({
+        j: common_vendor.s(_ctx.__cssVars()),
+        k: common_vendor.p({
           ["is-mask-click"]: true,
           backgroundColor: "#fff"
         }),
-        e: _ctx.$store.state.haslogin
+        l: _ctx.$store.state.haslogin
       }, _ctx.$store.state.haslogin ? common_vendor.e({
-        h: common_vendor.t(_ctx.$store.state.userInfo.nickName),
-        i: _ctx.$store.state.URL.replace("api/", "") + _ctx.$store.state.userInfo.userImage,
-        j: common_vendor.p({
+        o: common_vendor.t(_ctx.$store.state.userInfo.nickName),
+        p: _ctx.$store.state.URL.replace("api/", "") + _ctx.$store.state.userInfo.userImage,
+        q: common_vendor.p({
           type: "gear",
           size: "30",
           color: "gray"
         }),
-        k: common_vendor.o(open)
+        r: common_vendor.o(open)
       }, {
-        l: common_vendor.s(_ctx.__cssVars())
+        s: common_vendor.s(_ctx.__cssVars())
       }) : {}, {
-        m: common_vendor.o(($event) => onClickItem($event)),
-        n: common_vendor.p({
+        t: common_vendor.o(($event) => onClickItem($event)),
+        v: common_vendor.p({
           current: common_vendor.unref(current),
           values: items,
           ["active-color"]: "#6da6be"
         }),
-        o: common_vendor.unref(current) === 0
+        w: common_vendor.unref(current) === 0
       }, common_vendor.unref(current) === 0 ? {} : {}, {
-        p: common_vendor.unref(current) === 1
+        x: common_vendor.unref(current) === 1
       }, common_vendor.unref(current) === 1 ? {} : {}, {
-        q: common_vendor.s(_ctx.__cssVars()),
-        r: !_ctx.$store.state.haslogin
+        y: common_vendor.s(_ctx.__cssVars()),
+        z: !_ctx.$store.state.haslogin
       }, !_ctx.$store.state.haslogin ? {
-        s: _ctx.$store.state.URL.replace("api/", "") + "static/set/login.png",
-        t: common_vendor.o(login),
-        v: common_vendor.s(_ctx.__cssVars())
+        A: _ctx.$store.state.URL.replace("api/", "") + "static/set/login.png",
+        B: common_vendor.o(login),
+        C: common_vendor.s(_ctx.__cssVars())
       } : {});
     };
   }

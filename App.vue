@@ -5,6 +5,19 @@
 	import store from '@/store/index.js'
 	export default {
 		onLaunch: async function() {
+			const updateManager = wx.getUpdateManager()
+			updateManager.onUpdateReady(function () {
+			  wx.showModal({
+			    title: '更新提示',
+			    content: '新版本已经准备好，是否重启应用？',
+			    success: function (res) {
+			      if (res.confirm) {
+			        // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+			        updateManager.applyUpdate()
+			      }
+			    }
+			  })
+			})
 			console.log('App Launch')
 			const systemInfo = uni.getSystemInfoSync()
 			let statusBarHeight = systemInfo.statusBarHeight
@@ -49,15 +62,19 @@
 
 			let userInfo = uni.getStorageSync('userInfo')
 			if(userInfo){
-				uni.removeStorageSync('wallpaper')
-				store.commit('changeState',{name:'haslogin',value:true})
-				store.commit('changeUserInfo',{name:'nickName',value:userInfo.nickName})
-				store.commit('changeUserInfo',{name:'id',value:userInfo.userId})
-				store.commit('changeUserInfo',{name:'userImage',value:userInfo.userImage})
-				// 初始化喜欢的图片
-				store.commit('wallpaper/changeState',{name:'loveImage',value:userInfo.heartWallpapwer})
-				// 初始化日记列表
-				store.dispatch('readDiary/getDairy')
+				if(!userInfo.userJwt){
+					wallpaperJwt()
+				}else{
+					uni.removeStorageSync('wallpaper')
+					store.commit('changeState',{name:'haslogin',value:true})
+					store.commit('changeUserInfo',{name:'nickName',value:userInfo.nickName})
+					store.commit('changeUserInfo',{name:'id',value:userInfo.userId})
+					store.commit('changeUserInfo',{name:'userImage',value:userInfo.userImage})
+					// 初始化喜欢的图片
+					store.commit('wallpaper/changeState',{name:'loveImage',value:userInfo.heartWallpapwer})
+					// 初始化日记列表
+					store.dispatch('readDiary/getDairy')
+				}
 			}else{
 				wallpaperJwt()
 			}

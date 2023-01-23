@@ -1,3 +1,6 @@
+.activeInput.data-v-2f1ef635 {
+  border-bottom: 1px solid gray;
+}
 .Pop_up.data-v-2f1ef635 {
   width: var(--2f1ef635-popupWidth);
   height: 100%;
@@ -10,6 +13,26 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+.Pop_up .Pop_up_item .nickname.data-v-2f1ef635 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid pink;
+  margin-bottom: 20rpx;
+}
+.Pop_up .Pop_up_item .nickname .nickname_item.data-v-2f1ef635 {
+  display: flex;
+}
+.Pop_up .Pop_up_item .nickname .nickname_item input.data-v-2f1ef635 {
+  width: 60%;
+  text-align: center;
+}
+.Pop_up .Pop_up_item .nickname button.data-v-2f1ef635 {
+  width: 40%;
+  margin: 0;
+  font-size: x-small;
+  padding: 0 5rpx;
 }
 .Pop_up .Pop_up_item button.data-v-2f1ef635 {
   margin-top: 10rpx;

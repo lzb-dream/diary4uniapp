@@ -79,7 +79,7 @@ import {requests,uploadfile} from '@/js/request.js'
 const myStore = useStore()
 const readDiary = myStore.state.readDiary
 const diary = ref(false)
-const incoStyle = ref("background-image: url('http://127.0.0.1:8000/static/set/updateDiary.png')")
+const incoStyle = ref("background-image: url('https://love-life-lzb.fun/static/set/updateDiary.png')")
 let index = null
 // 复原控件
 let textRecovery = true
@@ -152,7 +152,7 @@ async function changeUpdate(){
 	}
 	if(updateSwitch.value){
 		updateSwitch.value = false
-		incoStyle.value = "background-image: url('http://127.0.0.1:8000/static/set/saveUpdateDiary.png')"
+		incoStyle.value = "background-image: url('https://love-life-lzb.fun/static/set/saveUpdateDiary.png')"
 	}else{
 		const res = await requests({url:'diary',method:'PUT',data:{diary:diary.value}})
 		if(res.statusCode==200){
@@ -166,7 +166,7 @@ async function changeUpdate(){
 			await cyclicUpload(newvideoPhoto,'videoPhoto')
 		}
 		updateSwitch.value = true
-		incoStyle.value = "background-image: url('http://127.0.0.1:8000/static/set/updateDiary.png')"
+		incoStyle.value = "background-image: url('https://love-life-lzb.fun/static/set/updateDiary.png')"
 	}
 
 }
@@ -316,7 +316,7 @@ let statusBarHeight = (myStore.state.statusBarHeight)+'px'
 					width: 35rpx;
 					height: 35rpx;
 					display: inline-block;
-					background-image: url('http://127.0.0.1:8000/static/set/incorrect.png');
+					background-image: url('https://love-life-lzb.fun/static/set/incorrect.png');
 					background-size: 100% 100%;
 					position: absolute;
 					top: 10rpx;

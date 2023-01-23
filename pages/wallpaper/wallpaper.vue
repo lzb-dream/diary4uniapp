@@ -182,7 +182,7 @@ statusBarHeight = statusBarHeight+'px'
 		// background-color: aqua;
 		width: 70rpx;
 		border: 0;
-		background-image: url(http://127.0.0.1:8000/static/set/hollow.png);
+		background-image: url(https://love-life-lzb.fun/static/set/hollow.png);
 		background-size: 80%;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -193,7 +193,7 @@ statusBarHeight = statusBarHeight+'px'
 		// background-color: #e54d42 !important;
 		// border-color: #e54d42 !important;
 		color: transparent !important;
-		background-image: url(http://127.0.0.1:8000/static/set/solid.png);
+		background-image: url(https://love-life-lzb.fun/static/set/solid.png);
 	}
 	// <checkbox-group name="" @change="changeCheckbox">
 	// 	<label>

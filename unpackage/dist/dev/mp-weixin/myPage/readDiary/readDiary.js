@@ -27,7 +27,7 @@ const _sfc_main = {
     const myStore = common_vendor.useStore();
     const readDiary = myStore.state.readDiary;
     const diary = common_vendor.ref(false);
-    const incoStyle = common_vendor.ref("background-image: url('http://127.0.0.1:8000/static/set/updateDiary.png')");
+    const incoStyle = common_vendor.ref("background-image: url('https://love-life-lzb.fun/static/set/updateDiary.png')");
     let index = null;
     let textRecovery = true;
     let updateSwitch = common_vendor.ref(true);
@@ -83,7 +83,7 @@ const _sfc_main = {
       }
       if (updateSwitch.value) {
         updateSwitch.value = false;
-        incoStyle.value = "background-image: url('http://127.0.0.1:8000/static/set/saveUpdateDiary.png')";
+        incoStyle.value = "background-image: url('https://love-life-lzb.fun/static/set/saveUpdateDiary.png')";
       } else {
         const res = await js_request.requests({ url: "diary", method: "PUT", data: { diary: diary.value } });
         if (res.statusCode == 200) {
@@ -97,7 +97,7 @@ const _sfc_main = {
           await cyclicUpload(newvideoPhoto, "videoPhoto");
         }
         updateSwitch.value = true;
-        incoStyle.value = "background-image: url('http://127.0.0.1:8000/static/set/updateDiary.png')";
+        incoStyle.value = "background-image: url('https://love-life-lzb.fun/static/set/updateDiary.png')";
       }
     }
     async function deleteMedia(media, Type) {

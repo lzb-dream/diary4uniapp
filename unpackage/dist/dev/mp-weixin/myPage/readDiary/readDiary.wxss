@@ -75,7 +75,7 @@ input.data-v-a694f072 {
   width: 35rpx;
   height: 35rpx;
   display: inline-block;
-  background-image: url('http://127.0.0.1:8000/static/set/incorrect.png');
+  background-image: url('https://love-life-lzb.fun/static/set/incorrect.png');
   background-size: 100% 100%;
   position: absolute;
   top: 10rpx;

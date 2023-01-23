@@ -2,6 +2,14 @@
 	<uni-popup ref="popup" :is-mask-click="true" backgroundColor="#fff">
 		<view class="Pop_up">
 			<view class="Pop_up_item">
+				<view class="nickname">
+					<view class="nickname_item">
+						<label for="upnickname">昵称：</label>
+						<input type="text" :class="{'activeInput':!switchNickname}" :focus="true" id="upnickname" :disabled="switchNickname" maxlength="20" v-model="$store.state.userInfo.nickName">
+					</view>
+					<button v-if="switchNickname" @click="startNickName" >编辑昵称</button>
+					<button v-else @click="endNickName">提交昵称</button>
+				</view>
 				<button open-type="contact">与客服聊天</button>
 				<button @click="outLogin">退出登录</button>
 			</view>
@@ -50,13 +58,36 @@
 <script setup>
 import {requests} from '@/js/request.js'
 import {useStore} from 'vuex'
-import {onBeforeMount, ref} from 'vue'
+import {onBeforeMount, ref,watch} from 'vue'
 import MyDiary from '@/components/myDiary.vue'
 import LoveWallpaper from '@/components/loveWallpaper.vue'
 import {showToast} from '@/js/way.js'
 const myStore = useStore()
 const items = ['我写的日记', '喜欢的图片']
+// 修改昵称
+let switchNickname = ref(true)
+let switchUpNickname = false
+function startNickName(){
+	switchNickname.value = false
+}
+watch(()=>myStore.state.userInfo.nickName,()=>{
+	switchUpNickname = true
+	})
+async function endNickName(){
+	if(switchUpNickname){
+		const res = await requests({url:'userup',method:'PUT',data:{nickName:myStore.state.userInfo.nickName}})
+		if(res.statusCode==200){
+			showToast('昵称修改成功','success')
+		}
+		const userInfo = uni.getStorageSync('userInfo')
+		userInfo.nickName = myStore.state.userInfo.nickName
+		uni.setStorageSync('userInfo',userInfo)
+		switchUpNickname = false
+	}
+	switchNickname.value = true
+}
 
+// 弹出层管理
 const popup = ref('popup')
 function open(){
 	popup.value.open('right')
@@ -66,6 +97,7 @@ function outLogin(){
 	uni.removeStorageSync('userInfo');
 	myStore.commit('changeState',{name:'haslogin',value:false})
 	myStore.commit('readDiary/empty')
+	popup.value.close()
 }
 
 let current=ref(0)
@@ -118,6 +150,9 @@ let popupWidth = myStore.state.screenWidth/1.5+'px'
 </script>
 
 <style scoped lang="less">
+	.activeInput {
+		border-bottom: 1px solid gray;
+	}
 	.Pop_up {
 		width: v-bind(popupWidth);
 		height: 100%;
@@ -130,6 +165,26 @@ let popupWidth = myStore.state.screenWidth/1.5+'px'
 			position: absolute;
 			top: 50%;
 			transform: translateY(-50%);
+			.nickname{
+				display: flex;
+				width: 100%;
+				justify-content: space-between;
+				border: 1px solid pink;
+				margin-bottom: 20rpx;
+				.nickname_item {
+					display: flex;
+					input {
+						width: 60%;
+						text-align: center;
+					}
+				}
+				button {
+					width: 40%;
+					margin: 0;
+					font-size: x-small;
+					padding: 0 5rpx;
+				}
+			}
 			button {
 				margin-top: 10rpx;
 			}

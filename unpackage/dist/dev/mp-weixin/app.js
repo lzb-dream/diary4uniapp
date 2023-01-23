@@ -16,6 +16,18 @@ if (!Math) {
 }
 const _sfc_main = {
   onLaunch: async function() {
+    const updateManager = common_vendor.wx$1.getUpdateManager();
+    updateManager.onUpdateReady(function() {
+      common_vendor.wx$1.showModal({
+        title: "\u66F4\u65B0\u63D0\u793A",
+        content: "\u65B0\u7248\u672C\u5DF2\u7ECF\u51C6\u5907\u597D\uFF0C\u662F\u5426\u91CD\u542F\u5E94\u7528\uFF1F",
+        success: function(res) {
+          if (res.confirm) {
+            updateManager.applyUpdate();
+          }
+        }
+      });
+    });
     console.log("App Launch");
     const systemInfo = common_vendor.index.getSystemInfoSync();
     let statusBarHeight = systemInfo.statusBarHeight;
@@ -60,13 +72,17 @@ const _sfc_main = {
     }
     let userInfo = common_vendor.index.getStorageSync("userInfo");
     if (userInfo) {
-      common_vendor.index.removeStorageSync("wallpaper");
-      store_index.store.commit("changeState", { name: "haslogin", value: true });
-      store_index.store.commit("changeUserInfo", { name: "nickName", value: userInfo.nickName });
-      store_index.store.commit("changeUserInfo", { name: "id", value: userInfo.userId });
-      store_index.store.commit("changeUserInfo", { name: "userImage", value: userInfo.userImage });
-      store_index.store.commit("wallpaper/changeState", { name: "loveImage", value: userInfo.heartWallpapwer });
-      store_index.store.dispatch("readDiary/getDairy");
+      if (!userInfo.userJwt) {
+        wallpaperJwt();
+      } else {
+        common_vendor.index.removeStorageSync("wallpaper");
+        store_index.store.commit("changeState", { name: "haslogin", value: true });
+        store_index.store.commit("changeUserInfo", { name: "nickName", value: userInfo.nickName });
+        store_index.store.commit("changeUserInfo", { name: "id", value: userInfo.userId });
+        store_index.store.commit("changeUserInfo", { name: "userImage", value: userInfo.userImage });
+        store_index.store.commit("wallpaper/changeState", { name: "loveImage", value: userInfo.heartWallpapwer });
+        store_index.store.dispatch("readDiary/getDairy");
+      }
     } else {
       wallpaperJwt();
     }

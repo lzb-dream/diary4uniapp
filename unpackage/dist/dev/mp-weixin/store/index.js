@@ -5,7 +5,7 @@ const store_wallpaper = require("./wallpaper.js");
 const store_readDiary = require("./readDiary.js");
 const store = common_vendor.createStore({
   state: {
-    URL: "http://127.0.0.1:8000/api/",
+    URL: "https://love-life-lzb.fun/api/",
     statusBarHeight: "",
     screenHeight: "",
     tabbarheight: "",

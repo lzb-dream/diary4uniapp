@@ -7068,3 +7068,4 @@ exports.unref = unref;
 exports.useCssVars = useCssVars;
 exports.useStore = useStore;
 exports.watch = watch;
+exports.wx$1 = wx$1;
